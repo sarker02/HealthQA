@@ -37,7 +37,7 @@ public class LoginSteps extends BaseTest {
     public void navigateToLoginPage() {
     	logger.info("Executing step: I enter username and password ");
     	String username = "inductiveEpitraxAdmin";
-    	String password = "Pass!2345678";
+    	String password = "Pass!234567";
     	timeout = Duration.ofSeconds(10);
     	WebDriverWait wait = new WebDriverWait(driver, timeout); 
     	loginPage = new LoginPage(driver);
