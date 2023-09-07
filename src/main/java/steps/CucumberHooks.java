@@ -9,6 +9,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Scenario;
 import utils.BaseTest;
 
@@ -25,6 +26,13 @@ public class CucumberHooks extends BaseTest {
         logger.info("Executing Scenario: " + scenario.getName());
     }
 
+    
+    @AfterStep
+    public void addScrenshots(Scenario scenario) {
+		final byte [] screenshotAs = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+		scenario.attach(screenshotAs, "image/png", scenario.getName());
+    }
+    
     @After
     public void afterScenario(Scenario scenario) {
         // Log the scenario name after it finishes
@@ -33,8 +41,8 @@ public class CucumberHooks extends BaseTest {
 		System.out.print("isFail?:"+failed);
 		
 		if (failed) {
-			byte [] screenshotAs = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-			scenario.attach(screenshotAs, "image/png", "loginPage");
+			final byte [] screenshotAs = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+			scenario.attach(screenshotAs, "image/png", scenario.getName());
 		}
     	tearDown();
         logger.info("Finished Scenario: " + scenario.getName());

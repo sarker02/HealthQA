@@ -34,7 +34,7 @@ public class LoginSteps extends BaseTest {
     }
     
     @When("I enter username and password")
-    public void navigateToLoginPage() {
+    public void enterCredentials() {
     	logger.info("Executing step: I enter username and password ");
     	String username = "inductiveEpitraxAdmin";
     	String password = "Pass!2345678";
@@ -48,7 +48,7 @@ public class LoginSteps extends BaseTest {
     }
 
     @And("I click on sign in button")
-    public void enterCredentials() throws InterruptedException {
+    public void clickOnLoginBtn() throws InterruptedException {
     	logger.info("Executing Step: I click on sign in button");
     	driver.findElement(loginPage.loginBtn).click();
     	Thread.sleep(10000);

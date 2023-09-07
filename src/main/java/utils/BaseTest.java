@@ -15,29 +15,48 @@ import org.openqa.selenium.OutputType;
 
 import java.io.File;
 import java.io.IOException;
-
+import utils.ConfigPropertyReader;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
 
     public static WebDriver driver;
-    //public static Logger logger = null;
     public static Logger logger = Logger.getLogger(BaseTest.class.getName());
+    public static ConfigPropertyReader configReader = new ConfigPropertyReader();
+	public static String browser_type = configReader.getProperty("browser");
+	public static String firefox_driver_path = configReader.getProperty("firefox_driver_path");
+	public static String site_url = configReader.getProperty("site_url");
+	public static String project_root_dir = configReader.getProperty("project_root_dir");  
+  
+//    public void BaseTest() {
+//    	String log4jPath = project_root_dir + File.separator + "config" + File.separator  + "log4j.properties";
+//    	System.out.println("Log4j prop file path: "+ log4jPath);
+//    	PropertyConfigurator.configure(log4jPath);
+//    }
     
-    public void BaseTest() {
-    	String log4jPath = "C:\\Users\\www.abcom.in\\eclipse-workspace\\HealthQA\\config\\log4j.properties";
-    	PropertyConfigurator.configure(log4jPath);
-    }
-    
-	@BeforeMethod
 	public static void setup() {
-        logger.info("Initializing broswer session");
-		System.setProperty("webdriver.gecko.driver", "C:\\drivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.get("https://solutions-qa.inductivehealth.com/home/");
+    	String log4jPath = project_root_dir + File.separator + "config" + File.separator  + "log4j.properties";
+    	System.out.println("Log4j prop file path: "+ log4jPath);
+    	PropertyConfigurator.configure(log4jPath);
+		if(browser_type.equalsIgnoreCase("firefox")) {
+			logger.info("Initializing Firefox Broswer Session");
+			driver = new FirefoxDriver();
+		}
+		else if(browser_type.equalsIgnoreCase("chrome")) {
+			logger.info("Initializing Chrome Browser Session");
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+		else{
+			logger.info("Invalid browser type set. Please check config.properties file");
+		}
+		
+		driver.get("https://solutions-qa.inductivehealth.com/");
 		driver.manage().window().maximize();
 		
 	}
 	
-	@AfterMethod
 	public static void tearDown() {
 		logger.info("Closing the browser session");
 		driver.quit();
@@ -52,7 +71,7 @@ public class BaseTest {
 		File screenshotFile = screenshotDriver.getScreenshotAs(OutputType.FILE);
 
 		// Define the destination path and file name
-		String destinationPath = "C:\\Users\\www.abcom.in\\eclipse-workspace\\HealthQA\\screenshots" + File.separator + pageName + ".png" ;
+		String destinationPath = project_root_dir + File.separator + "screenshots" + File.separator + pageName + ".png" ;
 
 		// Copy the screenshot file to the specified destination
 		try {

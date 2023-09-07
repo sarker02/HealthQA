@@ -8,6 +8,8 @@ tmp-bin/
 .project
 screenshots/
 test-output/
+reports/
+logs/
 # Log files
 *.log
 
