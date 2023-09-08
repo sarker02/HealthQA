@@ -4,8 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
@@ -179,5 +181,74 @@ public class PageObjectManager {
         }
         wait.until(ExpectedConditions.titleContains(titleText));
         return driver.getTitle().contains(titleText);
+    }
+    /**
+     * mouse hover with element
+     *
+     * @param locator
+     *
+     */
+    public static void performMouseHover(WebDriver driver, By locator) {
+        WebElement targetElement = driver.findElement(locator);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(targetElement).build().perform();
+    }
+
+    /**
+     *
+     * @param driver
+     * @param locator
+     * @param expectedText
+     */
+    public static void assertElementText(WebDriver driver, By locator, String expectedText) {
+        try {
+            WebElement element = driver.findElement(locator);
+            String actualText = element.getText();
+            Assert.assertEquals(actualText, expectedText, "Element text does not match with expected text.");
+        } catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.StaleElementReferenceException e) {
+            // Handle exceptions if the element is not found or stale
+            Assert.fail("Element not found or text not available.");
+        }
+    }
+
+    /**
+     *
+     * @param driver
+     * @param chartLocator
+     * @param starIconLocator
+     * @return
+     */
+    // Reusable method to check if a bar chart is displayed and highlight the star icon if it is
+    public static boolean isBarChartDisplayedAndHighlightStar(WebDriver driver, By chartLocator, By starIconLocator) {
+        try {
+            // Check if the bar chart element is displayed
+            WebElement chartElement = driver.findElement(chartLocator);
+            if (chartElement.isDisplayed()) {
+                // Highlight the star icon element
+                WebElement starIconElement = driver.findElement(starIconLocator);
+                highlightElement(driver, starIconElement);
+                return true; // Bar chart is displayed
+            }
+        } catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.StaleElementReferenceException e) {
+            // Handle exceptions if the elements are not found or stale
+        }
+        return false; // Bar chart is not displayed
+    }
+
+    /**
+     *
+     * @param driver
+     * @param element
+     */
+    // Helper method to highlight an element using JavaScript
+    private static void highlightElement(WebDriver driver, WebElement element) {
+        try {
+            if (driver instanceof JavascriptExecutor) {
+                JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+                jsExecutor.executeScript("arguments[0].style.border='3px solid red'", element);
+            }
+        } catch (Exception e) {
+            // Handle exceptions if highlighting fails
+        }
     }
 }
