@@ -3,7 +3,7 @@
 ---
 
 ## Tested Website
-[Inductive HealthQA]
+[Demoblaze](https://www.demoblaze.com/)
 
 ## Pre-requisites (Installations):
 - JDK 17.0.1+

@@ -112,7 +112,8 @@ public class PageObjectManager {
      * @param locator
      * @return true if element is displayed
      */
-    public boolean isElementDisplayed(By locator) {
+    public boolean isElementDisplayed(By locator) throws InterruptedException {
+        Thread.sleep(1000);
         waitUntilElementIsVisible(locator);
         return driver.findElement(locator).isDisplayed();
     }
@@ -182,11 +183,11 @@ public class PageObjectManager {
         wait.until(ExpectedConditions.titleContains(titleText));
         return driver.getTitle().contains(titleText);
     }
+
     /**
      * mouse hover with element
      *
      * @param locator
-     *
      */
     public static void performMouseHover(WebDriver driver, By locator) {
         WebElement targetElement = driver.findElement(locator);
@@ -195,12 +196,11 @@ public class PageObjectManager {
     }
 
     /**
-     *
      * @param driver
      * @param locator
      * @param expectedText
      */
-    public static void assertElementText(WebDriver driver, By locator, String expectedText) {
+    public void assertElementText(WebDriver driver, By locator, String expectedText) {
         try {
             WebElement element = driver.findElement(locator);
             String actualText = element.getText();
@@ -212,14 +212,13 @@ public class PageObjectManager {
     }
 
     /**
-     *
      * @param driver
      * @param chartLocator
      * @param starIconLocator
      * @return
      */
     // Reusable method to check if a bar chart is displayed and highlight the star icon if it is
-    public static boolean isBarChartDisplayedAndHighlightStar(WebDriver driver, By chartLocator, By starIconLocator) {
+    public boolean isBarChartDisplayedAndHighlightStar(WebDriver driver, By chartLocator, By starIconLocator) {
         try {
             // Check if the bar chart element is displayed
             WebElement chartElement = driver.findElement(chartLocator);
@@ -236,12 +235,11 @@ public class PageObjectManager {
     }
 
     /**
-     *
      * @param driver
      * @param element
      */
     // Helper method to highlight an element using JavaScript
-    private static void highlightElement(WebDriver driver, WebElement element) {
+    private void highlightElement(WebDriver driver, WebElement element) {
         try {
             if (driver instanceof JavascriptExecutor) {
                 JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -249,6 +247,35 @@ public class PageObjectManager {
             }
         } catch (Exception e) {
             // Handle exceptions if highlighting fails
+        }
+    }
+
+    /**
+     *
+     * @param driver
+     * @param starIconLocator
+     */
+    // Reusable method to remove multiple bar charts by clicking the star button
+    public void removeChartsByLocator(WebDriver driver, By starIconLocator) {
+        // Find all star icons with the provided locator
+        List<WebElement> starIcons = driver.findElements(starIconLocator);
+
+        // Iterate through star icons and click to remove charts
+        for (WebElement starIcon : starIcons) {
+            try {
+                Thread.sleep(1000);
+                starIcon.click();
+
+                // Handle any confirmation or additional steps if needed
+                // For example, you may need to confirm the removal through a dialog
+
+                // You can wait for a brief moment here if necessary
+                Thread.sleep(1000);
+            } catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.StaleElementReferenceException e) {
+                // Handle exceptions if the star icon element is not found or stale
+            } catch (InterruptedException e) {
+                // Handle InterruptedException if sleep is interrupted
+            }
         }
     }
 }
