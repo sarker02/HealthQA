@@ -9,6 +9,7 @@ tmp-bin/
 screenshots/
 test-output/
 reports/
+reports/report.html
 logs/
 # Log files
 *.log
