@@ -16,27 +16,17 @@ import java.time.Duration;
 /**
  * 
  */
-public class LoginPage {
+public class ForgotPasswordPage {
 
 	private WebDriver driver;
 
-	public LoginPage(WebDriver driver) {
+	public ForgotPasswordPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public By usernameTxt = By.xpath("//input[contains(@id, 'username')]");
-	public By passwordTxt = By.xpath("//input[contains(@id, 'password')]");
-	public By loginBtn = By.xpath("//input[contains(@value, 'Sign in')]");
-	public By invalidLoginMsg = By.xpath("//span[contains(@id,'userMessageText')]");
-	
-	public By forgotPasswordLink = By.xpath("//a[contains(text(),'Forgot your password')]");
-	
-	public By forgotPwdCnfMsg = By.xpath("//span[contains(@id,'userMessageText')]");
+	public By forgotPasswordHeaderMsg = By.xpath("//div[contains(@id,'instructions')]");
+	public By submitBtn = By.xpath("//input[contains(@value,'Submit')]");
+
 
 }
-
-
-
-
-
-

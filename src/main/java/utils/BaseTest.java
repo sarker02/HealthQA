@@ -37,11 +37,17 @@ public class BaseTest {
 //    }
     
 	public static void setup() {
+<<<<<<< HEAD
 		
 		String projectLoc = System.getProperty("user.dir");
     	String log4jPath = projectLoc + File.separator + "config" + File.separator  + "log4j.properties";
     	System.out.println("Log4j prop file path: "+ log4jPath);
     	PropertyConfigurator.configure(log4jPath);
+=======
+    	//String log4jPath = project_root_dir + File.separator + "config" + File.separator  + "log4j.properties";
+    	//System.out.println("Log4j prop file path: "+ log4jPath);
+    	//PropertyConfigurator.configure(log4jPath);
+>>>>>>> refs/remotes/origin/dev-shyam
 		if(browser_type.equalsIgnoreCase("firefox")) {
 			logger.info("Initializing Firefox Broswer Session");
 			WebDriverManager.firefoxdriver().setup();
