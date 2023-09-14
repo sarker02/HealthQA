@@ -27,11 +27,11 @@ public class CucumberHooks extends BaseTest {
     }
 
     
-    @AfterStep
-    public void addScrenshots(Scenario scenario) {
-		final byte [] screenshotAs = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-		scenario.attach(screenshotAs, "image/png", scenario.getName());
-    }
+//    @AfterStep
+//    public void addScrenshots(Scenario scenario) {
+//		final byte [] screenshotAs = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+//		scenario.attach(screenshotAs, "image/png", "screenshots/"+scenario.getName());
+//    }
     
     @After
     public void afterScenario(Scenario scenario) {
@@ -42,7 +42,7 @@ public class CucumberHooks extends BaseTest {
 		
 		if (failed) {
 			final byte [] screenshotAs = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-			scenario.attach(screenshotAs, "image/png", scenario.getName());
+			scenario.attach(screenshotAs, "image/png", "reports/screenshots/"+scenario.getName());
 		}
     	tearDown();
         logger.info("Finished Scenario: " + scenario.getName());

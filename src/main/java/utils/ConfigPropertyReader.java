@@ -17,10 +17,10 @@ public class ConfigPropertyReader {
     public ConfigPropertyReader() {
         properties = new Properties();
         try {
-        	String path = "xyz";
-            FileInputStream fileInputStream = new FileInputStream("C:/Users/www.abcom.in/eclipse-workspace/HealthQA/config/global.properties");
+        	String path = System.getProperty("user.dir");
+            FileInputStream fileInputStream = new FileInputStream(path+"/config/global.properties");
             properties.load(fileInputStream);
-            System.out.println("Browser Tyep: "+ properties.getProperty("browser"));
+            System.out.println("Browser Type: "+ properties.getProperty("browser"));
             fileInputStream.close();
         } catch (IOException e) {
         	System.out.println("Inside config properties exception block");

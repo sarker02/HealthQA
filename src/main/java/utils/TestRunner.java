@@ -9,7 +9,11 @@ import io.cucumber.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",glue="steps",
      monochrome=true,
-     plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+     plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
+     tags = ""
+		)
+		
+	
 public class TestRunner {
 
 }
