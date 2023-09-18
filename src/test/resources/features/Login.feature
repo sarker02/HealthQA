@@ -1,10 +1,6 @@
 Feature: Login Feature Tests
 
-<<<<<<< HEAD
-	@smoke @heal-01
-=======
-  @Smoke
->>>>>>> refs/remotes/origin/dev-shyam
+  @Smoke @heal-01
   Scenario: Valid Login Credentials Scenario
     Given I am on the the login page
     When I enter valid username and valid password
