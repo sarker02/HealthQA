@@ -16,19 +16,22 @@ public class SearchInvalidquiry extends BaseTest{
 	public void i_select_the_quick_search_bar() {
 		driver.findElement(By.xpath("//*[@id='default-search']")).click();
 	}
-	@When("I search for the following \\(People, Investigation, Lab Reports \\(ALL SEPARATELY)")
+	@When("I search for the following \\(People, Investigation, Lab Reports \\(ALL SEPARATELY) \\{ENTER RANDOM CHARACTER STRING}")
 	public void i_search_for_the_following_people_investigation_lab_reports_all_separately() {
-		driver.findElement(By.xpath("//*[@id='default-search']")).sendKeys("cas");
+		driver.findElement(By.xpath("//*[@id='default-search']")).sendKeys("wwqq");
 	}
-	@Then("I Expect to see the results populated accordingly above {int} search")
-	public void i_expect_to_see_the_results_populated_accordingly_above_search(Integer int1) {
-		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		WebElement result= driver.findElement(By.xpath("/html/body/div[2]/ul/li[1]/a/div[2]"));
-		Assert.assertEquals(true, result.isDisplayed());
-		System.out.print(" result is displayed");
-		
-		
+	
+	
+	@Then("I Expect to see the �No Result Found� in quick search query")
+	public void i_expect_to_see_the_no_result_found_in_quick_search_query() {
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			WebElement result= driver.findElement(By.xpath("//*[text()='No results found']"));
+			Assert.assertEquals(true, result.isDisplayed());
+			System.out.print(" result is displayed");
+			
 	}
+
+
+
 	
 }
