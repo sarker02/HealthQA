@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -18,7 +18,7 @@ import pages.LoginPage;
 import pages.ForgotPasswordPage;
 import utils.BaseTest;
 import org.apache.log4j.Logger;
-
+import org.junit.Assert;
 
 
 public class LoginSteps extends BaseTest  {
@@ -59,7 +59,7 @@ public class LoginSteps extends BaseTest  {
 	@Then("I expect to be signed on")
 	public void verifySuccessfullLogin() throws Throwable {
 		Thread.sleep(5000);
-		Assert.assertTrue(driver.findElement(homePage.favoritesBtn).isDisplayed(), "Favorites button not found. Failing the login test case");
+		Assert.assertTrue("Favorites button not found. Failing the login test case", driver.findElement(homePage.favoritesBtn).isDisplayed());
 		logger.info("Executing Step: I expect to be signed on");
 	}
 	@When("I enter invalid username and invalid password")
@@ -78,7 +78,7 @@ public class LoginSteps extends BaseTest  {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.invalidLoginMsg));
 		String expectedMsg = "You have entered an invalid password or username";
 		String actualMsg = driver.findElement(loginPage.invalidLoginMsg).getText();
-		Assert.assertTrue(actualMsg.contains(expectedMsg), "Expected invalid login message not found. Failing the invalid login test case");
+		Assert.assertTrue("Expected invalid login message not found. Failing the invalid login test case", actualMsg.contains(expectedMsg));
 		
 	}
 
@@ -97,7 +97,7 @@ public class LoginSteps extends BaseTest  {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(forgotPwdPage.forgotPasswordHeaderMsg));
 		String CorrectForgotPasswordHeaderMsg = "Please enter the username associated with your account";
 		String ActualForgotPasswordHeaderMsg = driver.findElement(forgotPwdPage.forgotPasswordHeaderMsg).getText();
-		Assert.assertTrue(ActualForgotPasswordHeaderMsg.contains(CorrectForgotPasswordHeaderMsg),"Correct forgot password header not found. Failing the login test case");
+		Assert.assertTrue("Correct forgot password header not found. Failing the login test case", ActualForgotPasswordHeaderMsg.contains(CorrectForgotPasswordHeaderMsg));
 
 		
 	}
@@ -121,7 +121,7 @@ public class LoginSteps extends BaseTest  {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.forgotPwdCnfMsg));
 		String expectedConfirmationMsg = "If an account was found for the username provided, you will receive an email shortly with further instructions.";
 		String actualConfirmationMsg = driver.findElement(loginPage.forgotPwdCnfMsg).getText();
-		Assert.assertTrue(actualConfirmationMsg.contains(expectedConfirmationMsg),"Message not found. Failing the login test case");
+		Assert.assertTrue("Message not found. Failing the login test case", actualConfirmationMsg.contains(expectedConfirmationMsg));
 		
 	}
 

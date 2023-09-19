@@ -29,16 +29,7 @@ public class BaseTest {
 	public static String site_url = configReader.getProperty("site_url");
 	public static String project_root_dir = configReader.getProperty("project_root_dir");  
   
-//    public void BaseTest() {
-//    	String log4jPath = project_root_dir + File.separator + "config" + File.separator  + "log4j.properties";
-//    	System.out.println("Log4j prop file path: "+ log4jPath);
-//    	PropertyConfigurator.configure(log4jPath);
-//    }
-    
 	public static void setup() {
-    	//String log4jPath = project_root_dir + File.separator + "config" + File.separator  + "log4j.properties";
-    	//System.out.println("Log4j prop file path: "+ log4jPath);
-    	//PropertyConfigurator.configure(log4jPath);
 		if(browser_type.equalsIgnoreCase("firefox")) {
 			logger.info("Initializing Firefox Broswer Session");
 			driver = new FirefoxDriver();
