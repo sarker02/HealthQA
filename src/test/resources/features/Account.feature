@@ -1,7 +1,6 @@
-Feature: Functionality of Forgot Password
+Feature: Account Management Feature Tests
 
 
-@smoke @heal-02
 Scenario: check the forgot password functionality
 Given I am on the the landing page
 When I navigate to the forgot password link

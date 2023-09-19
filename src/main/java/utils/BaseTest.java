@@ -26,26 +26,12 @@ public class BaseTest {
     public static ConfigPropertyReader configReader = new ConfigPropertyReader();
 	public static String browser_type = configReader.getProperty("browser");
 	public static String firefox_driver_path = configReader.getProperty("firefox_driver_path");
-	public static String chrome_driver_path = configReader.getProperty("chrome_driver_path");
 	public static String site_url = configReader.getProperty("site_url");
 	public static String project_root_dir = configReader.getProperty("project_root_dir");  
   
-//    public void BaseTest() {
-//    	String log4jPath = project_root_dir + File.separator + "config" + File.separator  + "log4j.properties";
-//    	System.out.println("Log4j prop file path: "+ log4jPath);
-//    	PropertyConfigurator.configure(log4jPath);
-//    }
-    
 	public static void setup() {
-		
-		String projectLoc = System.getProperty("user.dir");
-    	String log4jPath = projectLoc + File.separator + "config" + File.separator  + "log4j.properties";
-    	System.out.println("Log4j prop file path: "+ log4jPath);
-    	PropertyConfigurator.configure(log4jPath);
-
 		if(browser_type.equalsIgnoreCase("firefox")) {
 			logger.info("Initializing Firefox Broswer Session");
-			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
 		else if(browser_type.equalsIgnoreCase("chrome")) {
