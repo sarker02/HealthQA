@@ -10,7 +10,7 @@ import io.cucumber.junit.Cucumber;
 @CucumberOptions(features = "src/test/resources/features",glue="steps",
      monochrome=true,
      plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
-     tags = ""
+     tags = "@heal-05"
 		)
 		
 	

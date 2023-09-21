@@ -21,15 +21,16 @@ public class SearchInvalidquiry extends BaseTest{
 		driver.findElement(By.xpath("//*[@id='default-search']")).sendKeys("wwqq");
 	}
 	
-	
 	@Then("I Expect to see the �No Result Found� in quick search query")
 	public void i_expect_to_see_the_no_result_found_in_quick_search_query() {
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			WebElement result= driver.findElement(By.xpath("//*[text()='No results found']"));
-			Assert.assertEquals(true, result.isDisplayed());
-			System.out.print(" result is displayed");
-			
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		WebElement result= driver.findElement(By.xpath("//*[text()='No results found']"));
+		Assert.assertEquals(true, result.isDisplayed());
+		System.out.print(" result is not found");
+		  
 	}
+
+
 
 
 

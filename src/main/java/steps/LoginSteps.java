@@ -48,6 +48,7 @@ public class LoginSteps extends BaseTest  {
 		Thread.sleep(3000);
 		driver.findElement(loginPage.passwordTxt).sendKeys(validPassword);
 		captureScreenshot("login_page_screenshot");
+		Thread.sleep(20);
 	}
 	@And("I click on sign in button")
 	public void clickOnSigninBtn() throws Throwable {
