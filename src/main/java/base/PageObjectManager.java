@@ -278,4 +278,14 @@ public class PageObjectManager {
             }
         }
     }
+
+    // Switch to a window by its title
+    public void switchToWindowByTitle(String windowTitle) {
+        for (String windowHandle : driver.getWindowHandles()) {
+            driver.switchTo().window(windowHandle);
+            if (driver.getTitle().equals(windowTitle)) {
+                break; // Found the desired window, exit the loop
+            }
+        }
+    }
 }
