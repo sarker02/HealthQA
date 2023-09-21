@@ -3,7 +3,7 @@
 ---
 
 ## Tested Website
-[Demoblaze](https://www.demoblaze.com/)
+[HealthQA]
 
 ## Pre-requisites (Installations):
 - JDK 17.0.1+
