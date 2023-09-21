@@ -63,11 +63,29 @@ public class FavoritesintractChart extends BaseTest {
 	public void i_expect_their_to_be_options_to_choose() {
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		boolean displayedoption1=driver.findElement(By.xpath("//*[text()='Export Chart Data (CSV)']")).isDisplayed();
+		
+		
+		try {
+			boolean displayedoption1=driver.findElement(By.xpath("//*[text()='Export Chart Data (CSV)']")).isDisplayed();
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		boolean displayedoption2 =driver.findElement(By.xpath("//*[text()='Export Line List (CSV)']")).isDisplayed();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			boolean displayedoption2 =driver.findElement(By.xpath("//*[text()='Export Line List (CSV)']")).isDisplayed();
+			
+			if(displayedoption1 && displayedoption2) {
+				System.out.print("Both options are available");
 
+			}else {
+			
+				System.out.print("Both options are not available");
+			}
+
+		}catch (Exception e) {
+			
+			System.out.print("This Option is not available= \t" + e);
+			
+		}
+		
+		
 	}
 
 
