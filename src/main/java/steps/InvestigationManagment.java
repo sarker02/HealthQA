@@ -10,22 +10,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.When;
+import pages.InvestigationManagmentpages;
 import utils.BaseTest;
 import java.time.Duration;
 import java.time.Duration;
 public class InvestigationManagment extends BaseTest {
-	public Duration timeout;
-
-	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
-
+	
+	public InvestigationManagmentpages ivestmanagment = new InvestigationManagmentpages(driver);
+	public static Duration timeout = Duration.ofSeconds(20);
+	public WebDriverWait wait = new WebDriverWait(driver, timeout);
 	
 
 	@When("I navigate to the <Selected Chart Investigation Managment>")
 	public void i_navigate_to_the_selected_chart_investigation_managment() {
 	   
-		driver.findElement(By.xpath("//*[text()='Disease Surveillance']")).click();
+		driver.findElement(ivestmanagment.clkondiseassurvilence).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//*[@href='/insights/epi/quality']")).click();
+		driver.findElement(ivestmanagment.clkonInvestigationmanagment_btn).click();
 		
 		
 	}
