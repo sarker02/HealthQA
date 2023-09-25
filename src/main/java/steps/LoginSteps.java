@@ -17,7 +17,10 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.ForgotPasswordPage;
 import utils.BaseTest;
+import utils.JsonDataReader;
+
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 import org.junit.Assert;
 
 
@@ -29,11 +32,9 @@ public class LoginSteps extends BaseTest  {
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
+	private JSONObject jsonData;
 	
-	String validUsername = "inductiveEpitraxAdmin";
-	String validPassword = "Pass!2345678";
-	String invalidUsername = "inductive";
-	String invalidPassword = "Pass1234";
+	
 
 	@Given("I am on the the login page")
 	public void openLoginPage() {
@@ -44,9 +45,10 @@ public class LoginSteps extends BaseTest  {
 	public void enterValidCredentials() throws Throwable {
 		logger.info("Executing step: I enter valid username and valid password ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.usernameTxt));
-		driver.findElement(loginPage.usernameTxt).sendKeys(validUsername);
+		jsonData = JsonDataReader.readData("valid_credentials.json");
+		driver.findElement(loginPage.usernameTxt).sendKeys((String)jsonData.get("username"));
 		Thread.sleep(3000);
-		driver.findElement(loginPage.passwordTxt).sendKeys(validPassword);
+		driver.findElement(loginPage.passwordTxt).sendKeys((String)jsonData.get("password"));
 		captureScreenshot("login_page_screenshot");
 	}
 	@And("I click on sign in button")
@@ -66,8 +68,9 @@ public class LoginSteps extends BaseTest  {
 	public void enterInvalidCredentials() throws Throwable {
 		logger.info("Executing step: I enter invalid username and invalid password ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.usernameTxt));
-		driver.findElement(loginPage.usernameTxt).sendKeys(invalidUsername);
-		driver.findElement(loginPage.passwordTxt).sendKeys(invalidPassword);
+		jsonData = JsonDataReader.readData("invalid_credentials.json");
+		driver.findElement(loginPage.usernameTxt).sendKeys((String)jsonData.get("username"));
+		driver.findElement(loginPage.passwordTxt).sendKeys((String)jsonData.get("password"));
 		Thread.sleep(1000);
 		captureScreenshot("login_page_screenshot");
 	}
@@ -106,7 +109,8 @@ public class LoginSteps extends BaseTest  {
 	public void enterUsername() throws Throwable {
 		logger.info("Executing step: I enter in my username ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(forgotPwdPage.usernameTxt));
-		driver.findElement(forgotPwdPage.usernameTxt).sendKeys(validUsername);
+		jsonData = JsonDataReader.readData("valid_credentials.json");
+		driver.findElement(forgotPwdPage.usernameTxt).sendKeys((String)jsonData.get("username"));
 	}
 
 	@When("I click on Submit button")
