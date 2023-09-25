@@ -14,6 +14,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.LoginPage;
+import pages.QuickstartPages;
 import utils.BaseTest;
 
 public class QuickStart extends BaseTest {
@@ -22,6 +23,7 @@ public class QuickStart extends BaseTest {
 	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
 	public static Duration timeout;
 	public WebDriverWait wait;
+	public QuickstartPages quickStart = new QuickstartPages(driver);
 	
 	
 	@Given("I am an Authenticated User")
@@ -63,14 +65,14 @@ public class QuickStart extends BaseTest {
 	}
 	@When("I search up results in the Quick Search Results more than {int} Characters")
 	public void i_search_up_results_in_the_quick_search_results_more_than_characters(Integer int1) {
-		driver.findElement(By.xpath("//*[@id='default-search']")).click();
-		driver.findElement(By.xpath("//*[@id='default-search']")).sendKeys("cas");
+		driver.findElement(quickStart.clkonsearc_box).click();
+		driver.findElement(quickStart.clkonsearc_box).sendKeys("cas");
 	}
 	@Then("I see list of Expected result queries")
 	public void i_see_list_of_expected_result_queries() {
 
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		WebElement quries= driver.findElement(By.xpath("/html/body/div[2]/ul/li[1]/a/div[2]"));
+		WebElement quries= driver.findElement(quickStart.clkonfirstquiry);
 		Assert.assertEquals(true, quries.isDisplayed());
 		System.out.print("quries result is displayed");
 
@@ -78,7 +80,7 @@ public class QuickStart extends BaseTest {
 	}
 	@Then("I click on the first user queried in the search list")
 	public void i_click_on_the_first_user_queried_in_the_search_list() {
-		driver.findElement(By.xpath("/html/body/div[2]/ul/li[1]/a/div[2]")).click();
+		driver.findElement(quickStart.clkonfirstquiry).click();
 	}
 
 }

@@ -58,45 +58,44 @@ public class InsightManagement<Selenium> extends BaseTest {
 	public void i_expect_to_see_populated_fields_for_every_day() { }
 		
 	@Then("I expect to see matching investigation count same as matching count for Data Table")
-	public void i_expect_to_see_matching_investigation_count_same_as_matching_count_for_data_table() {
+	public void i_expect_to_see_matching_investigation_count_same_as_matching_count_for_data_table() throws InterruptedException {
 	
+		//getting value of investigation item
+		String investigationItems = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
+		System.out.print("Investigation Items=" + investigationItems);
+		
+		Thread.sleep(3000);
 		driver.findElement(insith.clkondrpdwn_btn).click();
 		driver.findElement(insith.clkondatatable).click();
 		
-		   
-		 WebElement element = driver.findElement(By.xpath("//*[text()='814']"));
-		    String elementval = element.getAttribute("value");
-		
+		//getting value of investigation item
+		String DataTableItems = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
+		System.out.print("\n DataTable Items=" + DataTableItems);
+			    
+		//compare both values    
 		
 		try {
-			boolean displayed=driver.findElement(By.xpath("//*[text()='814']")).isDisplayed();
-
 			
-			if(displayed) {
-				System.out.print("count display is same with data table count");
-                 logger.info("count display is same  with data table");
+			
+			if(investigationItems.equals(DataTableItems)) {
+				System.out.print("\n Investigation and data table items are same");
+                 logger.info("Investigation count display is same  with data table");
 			}else {
 
-				System.out.print("count display is not same with data table");
-				 logger.info("count display is not same  with data table");
+				System.out.print("\n Investigation and data table items are not same");
+				 logger.info("Investigation count display is not same  with data table");
 			}
 
 		}catch (Exception e) {
 
-			System.out.print("count display is not same");
-			 logger.info("count display is not same with data table count");
+			System.out.print("\n Something is wrong:" +e);
+			 logger.info("Error:" +e);
 		}
-
-		   
-            
-		/*	 WebElement machinginvestigation =driver.findElement(By.xpath("//*[text()='814']"));
-			    Assert.assertEquals(true, machinginvestigation.isDisplayed());
-			    System.out.print("count matched with datatable count");*/
-			    
 
 		    
 		 
 	}
+	
 	@When("I am on Data Table I expect to see dates same as dates provided in filter")
 	public void i_am_on_data_table_i_expect_to_see_dates_same_as_dates_provided_in_filter() {
 			
@@ -104,18 +103,20 @@ public class InsightManagement<Selenium> extends BaseTest {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, -7);
 		System.out.println("Date = "+ cal.getTime());
+
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime then = now.minusDays(7);
+
+		System.out.println(String.format(
+				"Now:  %s\nThen: %s",
+				now.format(format),
+				then.format(format)
+				));
 		
-		  DateTimeFormatter format =
-		            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-		        LocalDateTime now = LocalDateTime.now();
-		        LocalDateTime then = now.minusDays(7);
-
-		        System.out.println(String.format(
-		            "Now:  %s\nThen: %s",
-		            now.format(format),
-		            then.format(format)
-		        ));
+	
 	}
-
 }
+
+
