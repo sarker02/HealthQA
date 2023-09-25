@@ -8,12 +8,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.When;
 
-import pages.MessageflowdataQualitypages;
+import pages.Messageflowpages;
 import utils.BaseTest;
 
 public class MessageflowDataQuality extends BaseTest {
 
-	public MessageflowdataQualitypages flow = new MessageflowdataQualitypages(driver);
+	public Messageflowpages flow = new Messageflowpages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout);
 	

@@ -25,5 +25,5 @@ public class FavoritePages {
 	
 	
 	public By clkonInvestigationmanagment_btn = By.xpath("//*[@href='/insights/epi/quality']");
-	
+	public By clkonUtilizationdashboard_btn = By.xpath("//*[@href='/insights/epi/utilization']");
 }

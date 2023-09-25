@@ -11,13 +11,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.SearchInvalidquriypage;
+import pages.QuickstartPages;
 import utils.BaseTest;
 
 public class SearchInvalidquiry extends BaseTest{
 
 	
-	public SearchInvalidquriypage invalidquriy = new SearchInvalidquriypage(driver);
+	public QuickstartPages invalidquriy = new QuickstartPages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
@@ -30,7 +30,7 @@ public class SearchInvalidquiry extends BaseTest{
 	
 	@When("I Select the Quick Search Bar")
 	public void i_select_the_quick_search_bar() {
-		driver.findElement(invalidquriy.clkonsearch_bar).click();
+		driver.findElement(invalidquriy.clkonsearc_box).click();
 	}
 	@When("I search for the following \\(People, Investigation, Lab Reports \\(ALL SEPARATELY) \\{ENTER RANDOM CHARACTER STRING}")
 	public void i_search_for_the_following_people_investigation_lab_reports_all_separately() {

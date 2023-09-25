@@ -8,12 +8,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.When;
 import pages.EssenceAlertspages;
-import pages.ManageInvestigationResolutionpages;
+import pages.ManagmentPages;
 import utils.BaseTest;
 
 public class ManagmentInvestigationResolution extends BaseTest {
 
-	public ManageInvestigationResolutionpages invest = new  ManageInvestigationResolutionpages(driver);
+	public ManagmentPages invest = new  ManagmentPages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 

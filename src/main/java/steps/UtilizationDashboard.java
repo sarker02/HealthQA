@@ -7,13 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.When;
-import pages.UtilizationDashboardpage;
+import pages.FavoritePages;
 import utils.BaseTest;
 
 public class UtilizationDashboard extends BaseTest {
 
 	
-	public UtilizationDashboardpage Utilize = new UtilizationDashboardpage(driver);
+	public FavoritePages Utilize = new FavoritePages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout);
 	
@@ -24,7 +24,7 @@ public class UtilizationDashboard extends BaseTest {
 	@When("I navigate to the <Selected Chart utilization dashboard>")
 	public void i_navigate_to_the_selected_chart_utilization_dashboard() {
 	
-		driver.findElement(Utilize.clkondiseassurvillence_btn).click();
+		driver.findElement(Utilize.diseaseSurveillanceBtn).click();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//click on Utilization Dashboard

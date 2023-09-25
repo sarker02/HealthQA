@@ -11,13 +11,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Searchvalidquriypage;
+import pages.QuickstartPages;
 import utils.BaseTest;
 
 public class Searchvalidquiry extends BaseTest {
 	
 	
-	public Searchvalidquriypage validquriy = new Searchvalidquriypage(driver);
+	public QuickstartPages validquriy = new QuickstartPages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
@@ -32,7 +32,7 @@ public class Searchvalidquiry extends BaseTest {
 	
 	@When("I search for the following \\(People, Investigation, Lab Reports \\(ALL SEPARATELY)")
 	public void i_search_for_the_following_people_investigation_lab_reports_all_separately() {
-		driver.findElement(validquriy.clkonsearch_bar).click();
+		driver.findElement(validquriy.clkonsearc_box).click();
 		driver.findElement(By.xpath("//*[@id='default-search']")).sendKeys("cas");
 
 	}
