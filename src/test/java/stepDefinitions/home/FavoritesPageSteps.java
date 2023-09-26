@@ -151,4 +151,119 @@ public class FavoritesPageSteps {
 //        pom.waitUntilElementIsVisible(favoritesLocators.markAllReadButton);
 //        pom.clickElement(favoritesLocators.markAllReadButton);
     }
+
+    @When("Click on the Surveillance NBS link")
+    public void clickOnTheSurveillanceNBSLink() {
+        pom.waitUntilElementIsVisible(favoritesLocators.nbsOption);
+        pom.clickElement(favoritesLocators.nbsOption);
+    }
+
+    @Then("Check NBS page is displayed")
+    public void checkNBSPageIsDisplayed() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.nbsPage);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.nbsPage));
+    }
+
+    @When("Click on the Surveillance ESSENCE link")
+    public void clickOnTheSurveillanceESSENCELink() {
+        pom.waitUntilElementIsVisible(favoritesLocators.essenceOption);
+        pom.clickElement(favoritesLocators.essenceOption);
+    }
+
+    @Then("Check ESSENCE page is displayed")
+    public void checkESSENCEPageIsDisplayed() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.essencePage);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.essencePage));
+        pom.waitUntilElementIsVisible(favoritesLocators.essenceDemo);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.essenceDemo));
+        pom.waitUntilElementIsVisible(favoritesLocators.essenceDemoButton);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.essenceDemoButton));
+    }
+
+    @When("Click on the Surveillance EpiTrax link")
+    public void clickOnTheSurveillanceEpiTraxLink() {
+        pom.waitUntilElementIsVisible(favoritesLocators.epiTraxOption);
+        pom.clickElement(favoritesLocators.epiTraxOption);
+    }
+
+    @Then("Check EpiTrax page is displayed")
+    public void checkEpiTraxPageIsDisplayed() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.epiTraxPage);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.epiTraxPage));
+        pom.waitUntilElementIsVisible(favoritesLocators.epiTraxDemo);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.epiTraxDemo));
+        pom.waitUntilElementIsVisible(favoritesLocators.epiTraxDemoButton);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.epiTraxDemoButton));
+    }
+
+    @When("Click on the Surveillance Respond point of care link")
+    public void clickOnTheSurveillanceRespondPointOfCareLink() {
+        pom.waitUntilElementIsVisible(favoritesLocators.respondPointOption);
+        pom.clickElement(favoritesLocators.respondPointOption);
+    }
+
+    @Then("Check Respond point of care page is displayed")
+    public void checkRespondPointOfCarePageIsDisplayed() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.respondPage);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.respondPage));
+    }
+
+    @When("Click on the profile icon from the top right corner")
+    public void clickOnTheProfileIconFromTheTopRightCorner() {
+        pom.waitUntilElementIsVisible(favoritesLocators.profileIcon);
+        pom.clickElement(favoritesLocators.profileIcon);
+    }
+
+    @Then("Check All menu option is visible")
+    public void checkAllMenuOptionIsVisible() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.contactSupportOption);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.contactSupportOption));
+        pom.waitUntilElementIsVisible(favoritesLocators.giveFeedbackOption);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.giveFeedbackOption));
+        pom.waitUntilElementIsVisible(favoritesLocators.videoTutorialOption);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.videoTutorialOption));
+        pom.waitUntilElementIsVisible(favoritesLocators.aboutOption);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.aboutOption));
+        pom.waitUntilElementIsVisible(favoritesLocators.logoutOption);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.logoutOption));
+    }
+
+    @When("Click on the logout option")
+    public void clickOnTheLogoutOption() {
+        pom.waitUntilElementIsVisible(favoritesLocators.logoutOption);
+        pom.clickElement(favoritesLocators.logoutOption);
+    }
+
+    @Then("Check logout popup is displayed")
+    public void checkLogoutPopupIsDisplayed() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.logoutPopup);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.logoutPopup));
+    }
+
+    @When("Click on the yes button")
+    public void clickOnTheYesButton() {
+        pom.waitUntilElementIsVisible(favoritesLocators.yesButton);
+        pom.clickElement(favoritesLocators.yesButton);
+    }
+
+    @Then("Check landing page is displayed")
+    public void checkLandingPageIsDisplayed() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.landingPage);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.landingPage));
+    }
+
+    @When("Click on the keep working button")
+    public void clickOnTheKeepWorkingButton() {
+        pom.waitUntilElementIsVisible(favoritesLocators.keepWorkingButton);
+        pom.clickElement(favoritesLocators.keepWorkingButton);
+    }
+
+    @Then("Check home page is displayed")
+    public void checkHomePageIsDisplayed() {
+        PageObjectManager.performMouseHover(driver, favoritesLocators.inductiveHealthLogo);
+        pom.waitUntilElementIsVisible(favoritesLocators.favoriteButton);
+        pom.clickElement(favoritesLocators.favoriteButton);
+        pom.waitUntilElementIsVisible(favoritesLocators.favoritePageText);
+        pom.assertElementText(driver, favoritesLocators.favoritePageText, "Favorites");
+    }
 }

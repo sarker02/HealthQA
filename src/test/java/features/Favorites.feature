@@ -40,3 +40,38 @@ Feature: Home Page activities
     And I navigate to the Favorite Page
     And Click on the notification button
     Then Verify alert interface is visible
+
+  #HEAL-14
+  @Demo
+  Scenario: Launch service environment
+    Given I am an authenticated user
+    When Click on the Surveillance NBS link
+    Then Check NBS page is displayed
+    When Click on the Surveillance ESSENCE link
+    Then Check ESSENCE page is displayed
+    When Click on the Surveillance EpiTrax link
+    Then Check EpiTrax page is displayed
+    When Click on the Surveillance Respond point of care link
+    Then Check Respond point of care page is displayed
+
+  #HEAL-17
+  @Demo
+  Scenario: After logout system will be on landing page
+    Given I am an authenticated user
+    When Click on the profile icon from the top right corner
+    Then Check All menu option is visible
+    When Click on the logout option
+    Then Check logout popup is displayed
+    When Click on the yes button
+    Then Check landing page is displayed
+
+  #HEAL-18
+  @Demo
+  Scenario: After logout system will be on home page
+    Given I am an authenticated user
+    When Click on the profile icon from the top right corner
+    Then Check All menu option is visible
+    When Click on the logout option
+    Then Check logout popup is displayed
+    When Click on the keep working button
+    Then Check home page is displayed
