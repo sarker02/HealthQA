@@ -1,6 +1,7 @@
 package steps;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -22,7 +23,7 @@ public class InsightManagement<Selenium> extends BaseTest {
 	public Insightmanagmentpages insith = new Insightmanagmentpages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
-	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
+	public static Logger logger = Logger.getLogger(InsightManagement.class.getName());
 	
 	
 	
@@ -101,21 +102,53 @@ public class InsightManagement<Selenium> extends BaseTest {
 			
 	
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, -7);
-		System.out.println("Date = "+ cal.getTime());
+		cal.add(Calendar.DATE, -6);
+		System.out.println("Six Days Back Date = "+ cal.getTime());
+		logger.info("Six Days Back Date = "+ cal.getTime());
 
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-		LocalDateTime now = LocalDateTime.now();
-		LocalDateTime then = now.minusDays(7);
+		LocalDate now = LocalDate.now();
+		LocalDate then = now.minusDays(6);
 
 		System.out.println(String.format(
-				"Now:  %s\nThen: %s",
+				"Now:%s\nThen:%s",
 				now.format(format),
 				then.format(format)
 				));
 		
-	
+		
+		
+		//get all dates from data table
+		
+		for (int i=3; i<=9; i++) {
+			
+			String tableDates = driver.findElement(By.xpath("//*[@class='table-auto w-full bg-white border border-gray-200 divide-y divide-gray-200']/thead/tr[2]/th["+ i +"]")).getText();
+			
+			//convert string to date
+			LocalDate convertDate = LocalDate.parse(tableDates, format);
+			
+			//compare dates 
+			if (then.equals(convertDate) ) {
+				
+				System.out.print("Row "+ i +" date value=" + convertDate + " is same \n");
+				logger.info("Row "+ i +" date value=" + convertDate + " is same \n");
+				
+			}else {
+			
+				System.out.print("Row "+ i +" date value=" + convertDate + " is not same \n");
+				logger.info("Row "+ i +" date value=" + convertDate + " is not same \n");
+			}
+			
+			//add one day
+			then = then.plusDays(1);
+			
+			
+			
+			
+		}
+		
+		
 	}
 }
 
