@@ -54,7 +54,7 @@ Feature: Home Page activities
     When Click on the Surveillance Respond point of care link
     Then Check Respond point of care page is displayed
 
-  #HEAL-17
+  #HEAL-17-1
   @Demo
   Scenario: After logout system will be on landing page
     Given I am an authenticated user
@@ -65,7 +65,7 @@ Feature: Home Page activities
     When Click on the yes button
     Then Check landing page is displayed
 
-  #HEAL-18
+  #HEAL-17-2
   @Demo
   Scenario: After logout system will be on home page
     Given I am an authenticated user
@@ -75,3 +75,12 @@ Feature: Home Page activities
     Then Check logout popup is displayed
     When Click on the keep working button
     Then Check home page is displayed
+
+  #HEAL-18
+  @Demo
+  Scenario: Navigate to InductiveHealth Tutorials Page
+    Given I am an authenticated user
+    When Click on the profile icon from the top right corner
+    Then Check All menu option is visible
+    When Click on the Video Tutorials option
+    Then Check InductiveHealth tutorials page is displayed

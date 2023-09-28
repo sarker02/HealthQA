@@ -266,4 +266,16 @@ public class FavoritesPageSteps {
         pom.waitUntilElementIsVisible(favoritesLocators.favoritePageText);
         pom.assertElementText(driver, favoritesLocators.favoritePageText, "Favorites");
     }
+
+    @When("Click on the Video Tutorials option")
+    public void clickOnTheVideoTutorialsOption() {
+        pom.waitUntilElementIsVisible(favoritesLocators.tutorialOption);
+        pom.clickElement(favoritesLocators.tutorialOption);
+    }
+
+    @Then("Check InductiveHealth tutorials page is displayed")
+    public void checkInductiveHealthTutorialsPageIsDisplayed() throws InterruptedException {
+        pom.waitUntilElementIsVisible(favoritesLocators.videoTutorialPage);
+        Assert.assertTrue(pom.isElementDisplayed(favoritesLocators.videoTutorialPage));
+    }
 }

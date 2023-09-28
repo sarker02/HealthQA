@@ -55,5 +55,9 @@ public class FavoritesLocators {
     public By landingPage = By.xpath("(//div[@class='form-background rounded'])[1]");
     public By keepWorkingButton = By.xpath("(//button[normalize-space()='No, Keep Working'])[1]");
 
+    //Heal-18
+    public By tutorialOption = By.xpath("(//a[normalize-space()='Video Tutorials'])[1]");
+    public By videoTutorialPage = By.xpath("(//h1[normalize-space()='Video Tutorials'])[1]");
+
 }
 
