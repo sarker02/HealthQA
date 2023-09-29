@@ -5,6 +5,7 @@ package pages;
 
 import org.openqa.selenium.support.PageFactory;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +17,7 @@ import org.testng.Assert;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import steps.LoginSteps;
 import steps.QuickSearch;
+import utils.JsonDataReader;
 
 import java.time.Duration;
 
@@ -29,14 +31,10 @@ public class LoginPage {
 	public static Duration timeout;
 	public WebDriverWait wait;
 	public static Logger logger = Logger.getLogger(LoginPage.class.getName());
-	String validUsername = "inductiveEpitraxAdmin";
-	String validPassword = "Pass!2345678";
-	String invalidUsername = "inductive";
-	String invalidPassword = "Pass1234";
-	
+	private JSONObject jsonData;
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
-		timeout = Duration.ofSeconds(30);
+		timeout = Duration.ofSeconds(30); 
 		wait = new WebDriverWait(driver, timeout);
 	}
 
@@ -54,8 +52,9 @@ public class LoginPage {
 	public void login() throws InterruptedException {
 		logger.info("Performing login operation");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(usernameTxt));
-		driver.findElement(usernameTxt).sendKeys(validUsername);
-		driver.findElement(passwordTxt).sendKeys(validPassword);
+		jsonData = JsonDataReader.readData("valid_credentials.json");
+		driver.findElement(usernameTxt).sendKeys((String)jsonData.get("username"));
+		driver.findElement(passwordTxt).sendKeys((String)jsonData.get("password"));
 		driver.findElement(loginBtn).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(homePage.favoritesBtn));
 		Thread.sleep(2000);
