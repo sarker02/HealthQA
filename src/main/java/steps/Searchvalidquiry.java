@@ -26,10 +26,6 @@ public class Searchvalidquiry extends BaseTest {
 	
 	
 	
-	
-	
-	
-	
 	@When("I search for the following \\(People, Investigation, Lab Reports \\(ALL SEPARATELY)")
 	public void i_search_for_the_following_people_investigation_lab_reports_all_separately() {
 		driver.findElement(validquriy.clkonsearc_box).click();

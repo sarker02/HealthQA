@@ -16,11 +16,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.it.Date;
-import pages.Insightmanagmentpages;
+import pages.FavoritePages;
 import utils.BaseTest;
 public class InsightManagement<Selenium> extends BaseTest {
 	
-	public Insightmanagmentpages insith = new Insightmanagmentpages(driver);
+	public FavoritePages insith = new FavoritePages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(InsightManagement.class.getName());
@@ -31,9 +31,9 @@ public class InsightManagement<Selenium> extends BaseTest {
 	public void i_navigate_to_disease_analytics_trends() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
-		driver.findElement(insith.clkonsurvilence_btn).click();
+		driver.findElement(insith.diseaseSurveillanceBtn).click();
 		
-	    driver.findElement(insith.clkonanalytictrends_btn).click();
+	    driver.findElement(insith.clkondiseasanalyticstrends_btn).click();
 		
 	}
 	
@@ -47,11 +47,11 @@ public class InsightManagement<Selenium> extends BaseTest {
 	@Then("I select filtering with Event Date within Last Week")
 	public void i_select_filtering_with_event_date_within_last_week() {
 		
-		driver.findElement(insith.clkeventdate_Btn).click();	
+		driver.findElement(insith.clkoneventdate_btn).click();	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		driver.findElement(By.xpath("//*[@id='eventDate-WithinLastPicker']")).sendKeys("");
-	    driver.findElement(insith.clkonlastweek_btn).click();
+	    driver.findElement(insith.clkonwithinlastweek_btn).click();
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	
 	}
@@ -66,7 +66,7 @@ public class InsightManagement<Selenium> extends BaseTest {
 		System.out.print("Investigation Items=" + investigationItems);
 		
 		Thread.sleep(3000);
-		driver.findElement(insith.clkondrpdwn_btn).click();
+		driver.findElement(insith.clkondropdown_btn).click();
 		driver.findElement(insith.clkondatatable).click();
 		
 		//getting value of investigation item

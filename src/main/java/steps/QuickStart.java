@@ -31,7 +31,7 @@ public class QuickStart extends BaseTest {
 		
 		logger.info("Executing step: I enter username and password ");
 		
-		timeout = Duration.ofSeconds(10);
+		timeout = Duration.ofSeconds(30);
     	WebDriverWait wait = new WebDriverWait(driver, timeout);
 		
     	loginPage = new LoginPage(driver);
@@ -43,7 +43,7 @@ public class QuickStart extends BaseTest {
 
 		driver.findElement(By.xpath("//*[@type='submit']")).click();
 
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
 		WebElement Epitraxinductive= driver.findElement(By.xpath("//*[text()='Epitrax Inductive']"));
 		Assert.assertEquals(true, Epitraxinductive.isDisplayed());

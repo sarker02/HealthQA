@@ -24,6 +24,6 @@ public class FavoritePages {
 	public By clkondownload_btn = By.xpath("//*[@class='h-6 text-ih-navy-700']");
 	
 	
-	public By clkonInvestigationmanagment_btn = By.xpath("//*[@href='/insights/epi/quality']");
-	public By clkonUtilizationdashboard_btn = By.xpath("//*[@href='/insights/epi/utilization']");
+	public By clkonInvestigationmanagment_btn = By.xpath("//*[text()='Investigation Management']");
+	public By clkonUtilizationdashboard_btn = By.xpath("//*[text()='Utilization Dashboard']");
 }
