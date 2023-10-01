@@ -1,6 +1,6 @@
 Feature: Login Feature Tests
 
-  @Smoke
+  @Shyam
   Scenario: Valid Login Credentials Scenario
     Given I am on the the login page
     When I enter valid username and valid password
