@@ -1,5 +1,23 @@
 # Web Test Automation Project for Inductive Health Web Interface.
 
+
+### Checkout framework code from github
+   git clone https://github.com/sarker02/HealthQA.git
+
+### Load maven depenecies from windows command line:
+   mvn dependency:resolve
+
+### Compile the code
+   mv compile
+
+### Run cucumber tests having tag - 'Smoke' from intelij terminal 
+   mvn test -D"cucumber.filter.tags=@Smoke"
+
+### Run cucumber tests having tag - 'Smoke' from intelij windows command line 
+   mvn test -Dcucumber.filter.tags="@Smoke"
+
+
+
 ###Technology Stack:
    Selenium Webdriver, Cucumber BDD with Java
    
@@ -30,3 +48,6 @@
 		
 ### Page Object Model Pages Directory
 		src/main/java/pages
+		
+		
+
