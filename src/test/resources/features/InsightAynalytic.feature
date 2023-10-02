@@ -1,6 +1,6 @@
 Feature: Complete Analytics function
 
-  @smoke @insight-2
+  @Smoke @insight-2
   Scenario: check Deasies Aynalytic trends
     
     Given I am an Authenticated User

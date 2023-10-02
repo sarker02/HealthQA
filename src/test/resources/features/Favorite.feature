@@ -1,7 +1,6 @@
 Feature: Favorite- intracting chart
-
  
-  @smoke @insight-3
+  @Smoke @insight-3
   Scenario: Favorite-intracting with charts
     Given I am an Authenticated User
     When I navigate to the "<Selected Chart>" "<Selected Insights>"
@@ -18,9 +17,7 @@ Feature: Favorite- intracting chart
     | User Activity |                  | Management | 
 		| Investigation Resolution |       | Management |
 		| ESSENCE Alerts |                  | Syndromic Analytics |
-		| ELR Flow Report |       | Message Flow |
-		| ELR Data Quality |                  | Message Flow |
-		
-		
-		
-		
+		| ELR Flow Report |       					| Message Flow |
+		| ELR Data Quality |                 | Message Flow |
+				
+		 

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -17,8 +17,11 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.ForgotPasswordPage;
 import utils.BaseTest;
-import org.apache.log4j.Logger;
+import utils.JsonDataReader;
 
+import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.junit.Assert;
 
 
 public class LoginSteps extends BaseTest  {
@@ -29,11 +32,9 @@ public class LoginSteps extends BaseTest  {
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
+	private JSONObject jsonData;
 	
-	String validUsername = "inductiveEpitraxAdmin";
-	String validPassword = "Pass!2345678";
-	String invalidUsername = "inductive";
-	String invalidPassword = "Pass1234";
+	
 
 	@Given("I am on the the login page")
 	public void openLoginPage() {
@@ -44,9 +45,10 @@ public class LoginSteps extends BaseTest  {
 	public void enterValidCredentials() throws Throwable {
 		logger.info("Executing step: I enter valid username and valid password ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.usernameTxt));
-		driver.findElement(loginPage.usernameTxt).sendKeys(validUsername);
+		jsonData = JsonDataReader.readData("valid_credentials.json");
+		driver.findElement(loginPage.usernameTxt).sendKeys((String)jsonData.get("username"));
 		Thread.sleep(3000);
-		driver.findElement(loginPage.passwordTxt).sendKeys(validPassword);
+		driver.findElement(loginPage.passwordTxt).sendKeys((String)jsonData.get("password"));
 		captureScreenshot("login_page_screenshot");
 		Thread.sleep(20);
 	}
@@ -60,15 +62,16 @@ public class LoginSteps extends BaseTest  {
 	@Then("I expect to be signed on")
 	public void verifySuccessfullLogin() throws Throwable {
 		Thread.sleep(5000);
-		Assert.assertTrue(driver.findElement(homePage.favoritesBtn).isDisplayed(), "Favorites button not found. Failing the login test case");
+		Assert.assertTrue("Favorites button not found. Failing the login test case", driver.findElement(homePage.favoritesBtn).isDisplayed());
 		logger.info("Executing Step: I expect to be signed on");
 	}
 	@When("I enter invalid username and invalid password")
 	public void enterInvalidCredentials() throws Throwable {
 		logger.info("Executing step: I enter invalid username and invalid password ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.usernameTxt));
-		driver.findElement(loginPage.usernameTxt).sendKeys(invalidUsername);
-		driver.findElement(loginPage.passwordTxt).sendKeys(invalidPassword);
+		jsonData = JsonDataReader.readData("invalid_credentials.json");
+		driver.findElement(loginPage.usernameTxt).sendKeys((String)jsonData.get("username"));
+		driver.findElement(loginPage.passwordTxt).sendKeys((String)jsonData.get("password"));
 		Thread.sleep(1000);
 		captureScreenshot("login_page_screenshot");
 	}
@@ -79,7 +82,7 @@ public class LoginSteps extends BaseTest  {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.invalidLoginMsg));
 		String expectedMsg = "You have entered an invalid password or username";
 		String actualMsg = driver.findElement(loginPage.invalidLoginMsg).getText();
-		Assert.assertTrue(actualMsg.contains(expectedMsg), "Expected invalid login message not found. Failing the invalid login test case");
+		Assert.assertTrue("Expected invalid login message not found. Failing the invalid login test case", actualMsg.contains(expectedMsg));
 		
 	}
 
@@ -98,7 +101,7 @@ public class LoginSteps extends BaseTest  {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(forgotPwdPage.forgotPasswordHeaderMsg));
 		String CorrectForgotPasswordHeaderMsg = "Please enter the username associated with your account";
 		String ActualForgotPasswordHeaderMsg = driver.findElement(forgotPwdPage.forgotPasswordHeaderMsg).getText();
-		Assert.assertTrue(ActualForgotPasswordHeaderMsg.contains(CorrectForgotPasswordHeaderMsg),"Correct forgot password header not found. Failing the login test case");
+		Assert.assertTrue("Correct forgot password header not found. Failing the login test case", ActualForgotPasswordHeaderMsg.contains(CorrectForgotPasswordHeaderMsg));
 
 		
 	}
@@ -107,7 +110,8 @@ public class LoginSteps extends BaseTest  {
 	public void enterUsername() throws Throwable {
 		logger.info("Executing step: I enter in my username ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(forgotPwdPage.usernameTxt));
-		driver.findElement(forgotPwdPage.usernameTxt).sendKeys(validUsername);
+		jsonData = JsonDataReader.readData("valid_credentials.json");
+		driver.findElement(forgotPwdPage.usernameTxt).sendKeys((String)jsonData.get("username"));
 	}
 
 	@When("I click on Submit button")
@@ -122,7 +126,7 @@ public class LoginSteps extends BaseTest  {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.forgotPwdCnfMsg));
 		String expectedConfirmationMsg = "If an account was found for the username provided, you will receive an email shortly with further instructions.";
 		String actualConfirmationMsg = driver.findElement(loginPage.forgotPwdCnfMsg).getText();
-		Assert.assertTrue(actualConfirmationMsg.contains(expectedConfirmationMsg),"Message not found. Failing the login test case");
+		Assert.assertTrue("Message not found. Failing the login test case", actualConfirmationMsg.contains(expectedConfirmationMsg));
 		
 	}
 
