@@ -11,7 +11,7 @@ Feature: Favorite- intracting chart
     Then I expect their to be options to choose
     
      Examples: 
-    | Selected Chart |                 | Selected Insights | 
+    | Selected Chart |                 | Selected Insights |        
     | Disease Analytics and Trends |   | Disease Surveillance | 
     | Investigation Management |       | Disease Surveillance | 
     | Utilization Dashboard |          | Disease Surveillance |

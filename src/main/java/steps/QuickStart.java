@@ -21,9 +21,10 @@ public class QuickStart extends BaseTest {
 	
 	public LoginPage loginPage;
 	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
-	public static Duration timeout;
+	public static Duration timeout = Duration.ofSeconds(30);
 	public WebDriverWait wait;
 	public QuickstartPages quickStart = new QuickstartPages(driver);
+	public int timeDuration = 20;
 	
 	
 	@Given("I am an Authenticated User")
@@ -31,32 +32,21 @@ public class QuickStart extends BaseTest {
 		
 		logger.info("Executing step: I enter username and password ");
 		
-		timeout = Duration.ofSeconds(30);
-    	WebDriverWait wait = new WebDriverWait(driver, timeout);
+    	wait = new WebDriverWait(driver, timeout);
 		
+    	// add wait
     	loginPage = new LoginPage(driver);
     	wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.usernameTxt));
     	
-		// enter username and password
-		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("inductiveEpitraxAdmin");
-		driver.findElement(By.xpath("//*[@id='password']")).sendKeys("Pass!2345678");
-
-		driver.findElement(By.xpath("//*[@type='submit']")).click();
-
-		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-
-		WebElement Epitraxinductive= driver.findElement(By.xpath("//*[text()='Epitrax Inductive']"));
-		Assert.assertEquals(true, Epitraxinductive.isDisplayed());
-		System.out.print("Epitraxinductive text is displayed");
-
-
-
+    	//call login method
+    	quickStart.login();
+    	
 
 	}
 	@Given("I navigate to the Solutions Portal")
 	public void i_navigate_to_the_solutions_portal() {
 		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(timeDuration, TimeUnit.SECONDS);
 		WebElement solutionportal= driver.findElement(By.xpath("//*[text()='Solutions Portal']"));
 		Assert.assertEquals(true, solutionportal.isDisplayed());
 		System.out.print("solutionportal is displayed");
@@ -71,7 +61,7 @@ public class QuickStart extends BaseTest {
 	@Then("I see list of Expected result queries")
 	public void i_see_list_of_expected_result_queries() {
 
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(timeDuration, TimeUnit.SECONDS);
 		WebElement quries= driver.findElement(quickStart.clkonfirstquiry);
 		Assert.assertEquals(true, quries.isDisplayed());
 		System.out.print("quries result is displayed");
