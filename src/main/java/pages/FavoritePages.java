@@ -17,9 +17,9 @@ public class FavoritePages {
 	public By clkonwithinlastweek_btn = By.xpath("//*[text()='Within the last 1 Week']");
 
 	public By clkondropdown_btn = By.xpath("//*[@id=\"root\"]/div[2]/div/main/div/section/div/main/div[1]/div[2]/div/div[2]/div/div/div[2]/div");
-
+	
 	public By clkondatatable = By.xpath("//*[text()='Data Table']");
-
+	public By clkonGeographicaDist = By.xpath("//*[text()='Geographical Distribution']");
 	public By clkonaboutus_btn = By.xpath("//*[text()='About this data']");
 	public By clkondownload_btn = By.xpath("//*[@class='h-6 text-ih-navy-700']");
 	

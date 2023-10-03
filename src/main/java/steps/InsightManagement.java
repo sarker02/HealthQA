@@ -24,12 +24,12 @@ public class InsightManagement<Selenium> extends BaseTest {
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(InsightManagement.class.getName());
-	
+	public int Timeout=20;
 	
 	
 	@When("I navigate to Disease Analytics & Trends")
 	public void i_navigate_to_disease_analytics_trends() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 		
 		driver.findElement(insith.diseaseSurveillanceBtn).click();
 		
@@ -48,11 +48,11 @@ public class InsightManagement<Selenium> extends BaseTest {
 	public void i_select_filtering_with_event_date_within_last_week() {
 		
 		driver.findElement(insith.clkoneventdate_btn).click();	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 		
 		driver.findElement(By.xpath("//*[@id='eventDate-WithinLastPicker']")).sendKeys("");
 	    driver.findElement(insith.clkonwithinlastweek_btn).click();
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 	
 	}
 	@Then("I expect to see populated fields for every day")
@@ -65,7 +65,7 @@ public class InsightManagement<Selenium> extends BaseTest {
 		String investigationItems = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
 		System.out.print("Investigation Items=" + investigationItems);
 		
-		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 		driver.findElement(insith.clkondropdown_btn).click();
 		driver.findElement(insith.clkondatatable).click();
 		
@@ -143,13 +143,62 @@ public class InsightManagement<Selenium> extends BaseTest {
 			//add one day
 			then = then.plusDays(1);
 			
+			}
+		}
+	
+	
+	
+	@Then("I expect to see matching investigation count same as matching count for Geographical Distribution")
+	public void i_expect_to_see_matching_investigation_count_same_as_matching_count_for_geographical_distribution() {
+	   
+		
+		
+		//getting value of investigation item
+		String investigationItems = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
+		System.out.print("Investigation Items=" + investigationItems);
+		
+		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
+		driver.findElement(insith.clkondropdown_btn).click();
+		driver.findElement(insith.clkonGeographicaDist).click();
+		
+		//getting value of investigation item
+		String GeographicalItems  = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
+		System.out.print("Geographical Items =" + GeographicalItems);
+		
+
+         try {
 			
 			
-			
+			if(investigationItems.equals(GeographicalItems)) {
+				System.out.print("\n Investigation and Graphical items are same");
+                 logger.info("Investigation count display is same  with Graphical items");
+			}else {
+
+				System.out.print("\n Investigation and Graphical Items are not same");
+				 logger.info("Investigation count display is not same  with Graphical Items");
+			}
+
+		}catch (Exception e) {
+
+			System.out.print("\n Something is wrong:" +e);
+			 logger.info("Error:" +e);
 		}
 		
 		
+		
+		
+		
 	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 

@@ -16,8 +16,8 @@ public class HomePage {
     public By firstUserInSearchResults = By.xpath("/html/body/div[2]/ul/li[1]/a/div[2]");
     public By noSearchResultsFoundTxt = By.xpath("//*[text()='No results found']");
     public By patientCassinClaudineRecord = By.xpath("//*[contains(text(),'Claudine')]");
-    public By patientCassinBartolettiRecord = By.xpath("//*[contains(text(),'Bartoletti')]");
-    public By patientCassinRossRecord = By.xpath("//*[contains(text(),'Ross')]");
+    public By patientCassinMclaughlinRecord = By.xpath("/html/body/div[3]/ul/li[1]/a/div[1]");
+    public By patientCassinSanjuanitaRecord = By.xpath("/html/body/div[3]/ul/li[4]/a");
     public void performSearch(String searchString) throws InterruptedException {
 		driver.findElement(searchBar).click();
 		driver.findElement(searchBar).sendKeys(searchString);
