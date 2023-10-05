@@ -21,7 +21,7 @@ import utils.BaseTest;
 public class InsightManagement<Selenium> extends BaseTest {
 	
 	public FavoritePages insith = new FavoritePages(driver);
-	public static Duration timeout = Duration.ofSeconds(20);
+	public static Duration timeout = Duration.ofSeconds(40);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(InsightManagement.class.getName());
 	public int Timeout=20;
@@ -40,7 +40,7 @@ public class InsightManagement<Selenium> extends BaseTest {
 	@Then("I expect to see all filter selections visible")
 	public void i_expect_to_see_all_filter_selections_visible() {
 		
-		WebElement allfilters =driver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div/main/div/section/div/main/div[1]/div[1]"));
+		WebElement allfilters =driver.findElement(insith.allFilter);
 	    Assert.assertEquals(true, allfilters.isDisplayed());
 	    System.out.print("selection filters displayed");	}
 	
@@ -50,7 +50,6 @@ public class InsightManagement<Selenium> extends BaseTest {
 		driver.findElement(insith.clkoneventdate_btn).click();	
 		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 		
-		driver.findElement(By.xpath("//*[@id='eventDate-WithinLastPicker']")).sendKeys("");
 	    driver.findElement(insith.clkonwithinlastweek_btn).click();
 	    driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 	
@@ -62,7 +61,7 @@ public class InsightManagement<Selenium> extends BaseTest {
 	public void i_expect_to_see_matching_investigation_count_same_as_matching_count_for_data_table() throws InterruptedException {
 	
 		//getting value of investigation item
-		String investigationItems = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
+		String investigationItems = driver.findElement(insith.chartValueBox).getText();
 		System.out.print("Investigation Items=" + investigationItems);
 		
 		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
@@ -70,7 +69,7 @@ public class InsightManagement<Selenium> extends BaseTest {
 		driver.findElement(insith.clkondatatable).click();
 		
 		//getting value of investigation item
-		String DataTableItems = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
+		String DataTableItems = driver.findElement(insith.chartValueBox).getText();
 		System.out.print("\n DataTable Items=" + DataTableItems);
 			    
 		//compare both values    
@@ -154,7 +153,7 @@ public class InsightManagement<Selenium> extends BaseTest {
 		
 		
 		//getting value of investigation item
-		String investigationItems = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
+		String investigationItems = driver.findElement(insith.chartValueBox).getText();
 		System.out.print("Investigation Items=" + investigationItems);
 		
 		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
@@ -162,8 +161,8 @@ public class InsightManagement<Selenium> extends BaseTest {
 		driver.findElement(insith.clkonGeographicaDist).click();
 		
 		//getting value of investigation item
-		String GeographicalItems  = driver.findElement(By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']")).getText();
-		System.out.print("Geographical Items =" + GeographicalItems);
+		String GeographicalItems  = driver.findElement(insith.chartValueBox).getText();
+		System.out.print("\n Geographical Items =" + GeographicalItems);
 		
 
          try {

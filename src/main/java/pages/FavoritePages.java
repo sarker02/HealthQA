@@ -26,4 +26,10 @@ public class FavoritePages {
 	
 	public By clkonInvestigationmanagment_btn = By.xpath("//*[text()='Investigation Management']");
 	public By clkonUtilizationdashboard_btn = By.xpath("//*[text()='Utilization Dashboard']");
+	
+	
+	public By allFilter = By.xpath("//*[@id=\"root\"]/div[2]/div/main/div/section/div/main/div[1]/div[1]");
+	
+	public By chartValueBox = By.xpath("//*[@class='pl-3 pt-1 text-gray-500 text-sm']");
+	
 }

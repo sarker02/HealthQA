@@ -24,23 +24,5 @@ public class QuickstartPages {
 	public By clkonfirstquiry = By.xpath("/html/body/div[2]/ul/li[1]/a/div[2]");
 
 
-	public void login() {
-
-		// enter username and password
-		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("inductiveEpitraxAdmin");
-		driver.findElement(By.xpath("//*[@id='password']")).sendKeys("Pass!2345678");
-
-		driver.findElement(By.xpath("//*[@type='submit']")).click();
-
-		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-
-		WebElement Epitraxinductive= driver.findElement(By.xpath("//*[text()='Epitrax Inductive']"));
-		Assert.assertEquals(true, Epitraxinductive.isDisplayed());
-		System.out.print("Epitraxinductive text is displayed");
-
-
-	}
-
-
 
 }
