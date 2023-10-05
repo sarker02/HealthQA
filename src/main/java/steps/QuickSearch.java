@@ -57,8 +57,8 @@ public class QuickSearch extends BaseTest{
 	@Given("I navigate to the Solutions Portal")
 	public void i_navigate_to_the_solutions_portal() throws InterruptedException {
 		logger.info("Executing Step: I navigate to the Solutions Portal ");
-		WebElement solutionportal= driver.findElement(homePage.solutionPortalTxt);
-		Assert.assertTrue("Solutions Portal Page Not Found", solutionportal.isDisplayed());
+		WebElement solutionPortal = driver.findElement(homePage.solutionPortalTxt);
+		Assert.assertTrue("Solutions Portal Page Not Found", solutionPortal.isDisplayed());
 		Thread.sleep(2000);
 	}
 
@@ -71,32 +71,11 @@ public class QuickSearch extends BaseTest{
 	@Then("I see list of expected records in search results")
 	public void verifyValidSearchResults() {
 		logger.info("Executing Step: I see list of Expected result queries");
-
-	try {
-			boolean displayedoption1=driver.findElement(homePage.patientCassinMclaughlinRecord).isDisplayed();
-
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			boolean displayedoption2 =driver.findElement(homePage.patientCassinSanjuanitaRecord).isDisplayed();
-
-			if(displayedoption1 && displayedoption2) {
-				System.out.print("options are available");
-                 logger.info("options are available");
-			}else {
-
-				System.out.print("options are not available");
-				 logger.info("options are not available");
-			}
-
-		}catch (Exception e) {
-
-			System.out.print("This Option is not available= \t" + e);
-			 logger.info("this options is not availabe");
-		}
-
 		
-		
-		//Assert.assertTrue("Patient Cassin Bartoletti Record not found in search results", driver.findElement(homePage.patientCassinMclaughlinRecord).isDisplayed());
-	//	Assert.assertTrue("Patient cassin Ross record not found in search results", driver.findElement(homePage.patientCassinSanjuanitaRecord).isDisplayed());
+		//call compare two options method
+		homePage.compareTwoOptions(homePage.patientCassinMclaughlinRecord, homePage.patientCassinSanjuanitaRecord);
+
+	
 	}
 
 	@Then("I click on the first user queried in the search list")

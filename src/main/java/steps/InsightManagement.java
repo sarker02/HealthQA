@@ -31,26 +31,26 @@ public class InsightManagement<Selenium> extends BaseTest {
 	public void i_navigate_to_disease_analytics_trends() {
 		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 		
-		driver.findElement(insith.diseaseSurveillanceBtn).click();
+		driver.findElement(insith.diseaseSurveillance).click();
 		
-	    driver.findElement(insith.clkondiseasanalyticstrends_btn).click();
+	    driver.findElement(insith.diseaseAnalyticsTrends).click();
 		
 	}
 	
 	@Then("I expect to see all filter selections visible")
 	public void i_expect_to_see_all_filter_selections_visible() {
 		
-		WebElement allfilters =driver.findElement(insith.allFilter);
-	    Assert.assertEquals(true, allfilters.isDisplayed());
+		WebElement allFilters =driver.findElement(insith.allFilter);
+	    Assert.assertEquals(true, allFilters.isDisplayed());
 	    System.out.print("selection filters displayed");	}
 	
 	@Then("I select filtering with Event Date within Last Week")
 	public void i_select_filtering_with_event_date_within_last_week() {
 		
-		driver.findElement(insith.clkoneventdate_btn).click();	
+		driver.findElement(insith.eventDateBtn).click();	
 		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 		
-	    driver.findElement(insith.clkonwithinlastweek_btn).click();
+	    driver.findElement(insith.lastWeekBtn).click();
 	    driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
 	
 	}
@@ -65,19 +65,19 @@ public class InsightManagement<Selenium> extends BaseTest {
 		System.out.print("Investigation Items=" + investigationItems);
 		
 		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
-		driver.findElement(insith.clkondropdown_btn).click();
-		driver.findElement(insith.clkondatatable).click();
+		driver.findElement(insith.dropDown).click();
+		driver.findElement(insith.dataTable).click();
 		
 		//getting value of investigation item
-		String DataTableItems = driver.findElement(insith.chartValueBox).getText();
-		System.out.print("\n DataTable Items=" + DataTableItems);
+		String dataTableItems = driver.findElement(insith.chartValueBox).getText();
+		System.out.print("\n DataTable Items=" + dataTableItems);
 			    
 		//compare both values    
 		
 		try {
 			
 			
-			if(investigationItems.equals(DataTableItems)) {
+			if(investigationItems.equals(dataTableItems)) {
 				System.out.print("\n Investigation and data table items are same");
                  logger.info("Investigation count display is same  with data table");
 			}else {
@@ -157,18 +157,18 @@ public class InsightManagement<Selenium> extends BaseTest {
 		System.out.print("Investigation Items=" + investigationItems);
 		
 		driver.manage().timeouts().implicitlyWait(Timeout, TimeUnit.SECONDS);
-		driver.findElement(insith.clkondropdown_btn).click();
-		driver.findElement(insith.clkonGeographicaDist).click();
+		driver.findElement(insith.dropDown).click();
+		driver.findElement(insith.geographicDist).click();
 		
 		//getting value of investigation item
-		String GeographicalItems  = driver.findElement(insith.chartValueBox).getText();
-		System.out.print("\n Geographical Items =" + GeographicalItems);
+		String geographicalItems  = driver.findElement(insith.chartValueBox).getText();
+		System.out.print("\n Geographical Items =" + geographicalItems);
 		
 
          try {
 			
 			
-			if(investigationItems.equals(GeographicalItems)) {
+			if(investigationItems.equals(geographicalItems)) {
 				System.out.print("\n Investigation and Graphical items are same");
                  logger.info("Investigation count display is same  with Graphical items");
 			}else {

@@ -19,9 +19,9 @@ public class QuickstartPages {
 	public By usernameTxt = By.xpath("//*[@id='username']");
 	public By passwordTxt = By.xpath("//*[@id='password']");
 	public By loginBtn = By.xpath("//*[@type='submit']");
-	public By clkonsearc_box = By.xpath("//*[@id='default-search']");
+	public By searchBox = By.xpath("//*[@id='default-search']");
 
-	public By clkonfirstquiry = By.xpath("/html/body/div[2]/ul/li[1]/a/div[2]");
+	public By firstQuiry = By.xpath("/html/body/div[2]/ul/li[1]/a/div[2]");
 
 
 
