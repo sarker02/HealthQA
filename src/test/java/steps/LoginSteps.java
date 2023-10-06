@@ -49,7 +49,7 @@ public class LoginSteps extends BaseTest  {
 		driver.findElement(loginPage.usernameTxt).sendKeys((String)jsonData.get("username"));
 		Thread.sleep(3000);
 		driver.findElement(loginPage.passwordTxt).sendKeys((String)jsonData.get("password"));
-		captureScreenshot("login_page_screenshot");
+		
 	}
 	@And("I click on sign in button")
 	public void clickOnSigninBtn() throws Throwable {
@@ -72,7 +72,7 @@ public class LoginSteps extends BaseTest  {
 		driver.findElement(loginPage.usernameTxt).sendKeys((String)jsonData.get("username"));
 		driver.findElement(loginPage.passwordTxt).sendKeys((String)jsonData.get("password"));
 		Thread.sleep(1000);
-		captureScreenshot("login_page_screenshot");
+		
 	}
 
 	@Then("I expect to be see an invalid login text")

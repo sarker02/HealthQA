@@ -54,7 +54,7 @@ public class QuickSearch extends BaseTest{
 	}
 
 	@Given("I navigate to the Solutions Portal")
-	public void i_navigate_to_the_solutions_portal() throws InterruptedException {
+	public void navigateToSolutionsPortal() throws InterruptedException {
 		logger.info("Executing Step: I navigate to the Solutions Portal ");
 		WebElement solutionportal= driver.findElement(homePage.solutionPortalTxt);
 		Assert.assertTrue("Solutions Portal Page Not Found", solutionportal.isDisplayed());
@@ -70,8 +70,8 @@ public class QuickSearch extends BaseTest{
 	@Then("I see list of expected records in search results")
 	public void verifyValidSearchResults() {
 		logger.info("Executing Step: I see list of Expected result queries");
-		Assert.assertTrue("Patient Cassin Bartoletti Record not found in search results", driver.findElement(homePage.patientCassinBartolettiRecord).isDisplayed());
-		Assert.assertTrue("Patient cassin Ross record not found in search results", driver.findElement(homePage.patientCassinRossRecord).isDisplayed());
+		Assert.assertTrue("Patient Cassin Mclaughlin Record not found in search results", driver.findElement(homePage.patientCassinMclaughlinRecord).isDisplayed());
+		Assert.assertTrue("Patient cassin Rufus record not found in search results", driver.findElement(homePage.patientCassinRufusRecord).isDisplayed());
 	}
 
 	@Then("I click on the first user queried in the search list")
