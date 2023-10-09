@@ -46,6 +46,10 @@ public class LoginPage {
 	public By forgotPasswordLink = By.xpath("//a[contains(text(),'Forgot your password')]");
 	
 	public By forgotPwdCnfMsg = By.xpath("//span[contains(@id,'userMessageText')]");
+	
+	public By forgotPasswordHeaderMsg = By.xpath("//div[contains(@id,'instructions')]");
+	public By submitBtn = By.xpath("//input[contains(@value,'Submit')]");
+
 
 	
 

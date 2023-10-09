@@ -15,7 +15,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.ForgotPasswordPage;
 import utils.BaseTest;
 import utils.JsonDataReader;
 
@@ -28,7 +27,6 @@ public class LoginSteps extends BaseTest  {
 
 	public LoginPage loginPage = new LoginPage(driver);
 	public HomePage homePage = new HomePage(driver);
-	public ForgotPasswordPage forgotPwdPage = new ForgotPasswordPage(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(LoginSteps.class.getName());
@@ -98,9 +96,9 @@ public class LoginSteps extends BaseTest  {
 	@Then("I expect their to be a Forgot Password Header")
 	public void verifyForgotPasswordHeader() {
 		logger.info("Executing step: I expect their to be a Forgot Password Header");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(forgotPwdPage.forgotPasswordHeaderMsg));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.forgotPasswordHeaderMsg));
 		String CorrectForgotPasswordHeaderMsg = "Please enter the username associated with your account";
-		String ActualForgotPasswordHeaderMsg = driver.findElement(forgotPwdPage.forgotPasswordHeaderMsg).getText();
+		String ActualForgotPasswordHeaderMsg = driver.findElement(loginPage.forgotPasswordHeaderMsg).getText();
 		Assert.assertTrue("Correct forgot password header not found. Failing the login test case", ActualForgotPasswordHeaderMsg.contains(CorrectForgotPasswordHeaderMsg));
 
 		
@@ -109,15 +107,15 @@ public class LoginSteps extends BaseTest  {
 	@And("I enter in my username")
 	public void enterUsername() throws Throwable {
 		logger.info("Executing step: I enter in my username ");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(forgotPwdPage.usernameTxt));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.usernameTxt));
 		jsonData = JsonDataReader.readData("valid_credentials.json");
-		driver.findElement(forgotPwdPage.usernameTxt).sendKeys((String)jsonData.get("username"));
+		driver.findElement(loginPage.usernameTxt).sendKeys((String)jsonData.get("username"));
 	}
 
 	@When("I click on Submit button")
 	public void clickOnSubmitButton() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(forgotPwdPage.submitBtn));
-		driver.findElement(forgotPwdPage.submitBtn).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(loginPage.submitBtn));
+		driver.findElement(loginPage.submitBtn).click();
 	}
 
 	@Then("I expect to be see a confirmation that password was sent to email")
