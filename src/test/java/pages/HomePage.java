@@ -26,6 +26,12 @@ public class HomePage {
     public By patientCassinMclaughlinRecord = By.xpath("/html/body/div[3]/ul/li[1]/a/div[1]");
     public By patientCassinSanjuanitaRecord = By.xpath("/html/body/div[3]/ul/li[4]/a");
     
+
+   
+    public By resultsContainingText(String text) {
+        return By.xpath("//*[contains(text(),'" + text + "')]");
+    }
+
     public void performSearch(String searchString) throws InterruptedException {
 		driver.findElement(searchBar).click();
 		driver.findElement(searchBar).sendKeys(searchString);
