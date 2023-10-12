@@ -26,8 +26,9 @@ public class BaseTest {
     public static ConfigPropertyReader configReader = new ConfigPropertyReader();
 	public static String browser_type = configReader.getProperty("browser");
 	public static String firefox_driver_path = configReader.getProperty("firefox_driver_path");
+	public static String chrome_driver_path = configReader.getProperty("chrome_driver_path");
 	public static String site_url = configReader.getProperty("site_url");
-	public static String project_root_dir = configReader.getProperty("project_root_dir");  
+	public static String project_root_dir = System.getProperty("user.dir");
   
 	public static void setup() {
 		if(browser_type.equalsIgnoreCase("firefox")) {

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -58,22 +59,29 @@ public class QuickSearch extends BaseTest{
 	}
 
 	@Given("I navigate to the Solutions Portal")
-	public void navigateToSolutionsPortal() throws InterruptedException {
+	public void i_navigate_to_the_solutions_portal() throws InterruptedException {
 		logger.info("Executing Step: I navigate to the Solutions Portal ");
-		WebElement solutionportal= driver.findElement(homePage.solutionPortalTxt);
-		Assert.assertTrue("Solutions Portal Page Not Found", solutionportal.isDisplayed());
+		WebElement solutionPortal = driver.findElement(homePage.solutionPortalTxt);
+		Assert.assertTrue("Solutions Portal Page Not Found", solutionPortal.isDisplayed());
 		Thread.sleep(2000);
 	}
 
 	@When("I perform search with keyword having more than three chracters")
 	public void performQuickSearch() throws InterruptedException {
-		logger.info("Executing Step: I search up results in the Quick Search Results more than int Characters ");
-		homePage.performSearch("cass");
+		 logger.info("Executing Step: I search up results in the Quick Search Results more than int Characters ");
+         homePage.performSearch("Cass");
+
+
 	}
 
 	@Then("I see list of expected records in search results")
 	public void verifyValidSearchResults() {
 		logger.info("Executing Step: I see list of Expected result queries");
+		
+		//call compare two options method
+		homePage.compareTwoOptions(homePage.patientCassinMclaughlinRecord, homePage.patientCassinSanjuanitaRecord);
+
+
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(homePage.resultsContainingText("Cass")));
 		List<WebElement> searchResults = driver.findElements(homePage.resultsContainingText("Cass"));
 		Assert.assertTrue("No matching results found", searchResults.size() > 0);
