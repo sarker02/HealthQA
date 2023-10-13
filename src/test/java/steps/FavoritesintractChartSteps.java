@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Then;
@@ -15,7 +16,7 @@ import pages.FavoritePages;
 import pages.HomePage;
 import utils.BaseTest;
 
-public class FavoritesintractChart extends BaseTest {
+public class FavoritesintractChartSteps extends BaseTest {
 
 	public  FavoritePages favorite = new  FavoritePages(driver);
 	public static Duration timeout = Duration.ofSeconds(20);
@@ -25,53 +26,37 @@ public class FavoritesintractChart extends BaseTest {
 
 		
 	@When("I navigate to the {string} {string}")
-	public void i_navigate_to_the(String string, String string2  ) {
-		
+	public void navigateToThe(String string, String string2) {
 		//select insight
 		driver.findElement(By.xpath("//*[text()='"+string2+"']")).click();
-		
 		//select chart
 		driver.findElement(By.xpath("//*[text()='"+ string+"']")).click();
-	
 	}
 	
-	
 	@When("I select the about this data option")
-	public void i_select_the_about_this_data_option() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		
+	public void selectThisDataOption() {
 	}
 	
 	@Then("I expect their to be a text about the chart")
-	public void i_expect_their_to_be_a_text_about_the_chart() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+	public void verifyTextAboutTheChart() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(favorite.aboutThisDataTxt));
 		// display about this data Text
-		WebElement  text =driver.findElement(By.xpath("//*[@class='font-bold text-lg md:text-md mr-2']"));
+		WebElement  text =driver.findElement(favorite.aboutThisDataTxt);
 		Assert.assertEquals(true,  text.isDisplayed());
 		System.out.print("text is display same about this data");
-
 	}
 	
 	@When("I Click the download button")
-	public void i_click_the_download_button() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+	public void clickDownloadButton() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(favorite.downloadBtn));
 		// click on download icon
-		driver.findElement(By.xpath("//*[@class='h-6 text-ih-navy-700']")).click();
+		driver.findElement(favorite.downloadBtn).click();
 	}
+	
 	@Then("I expect their to be options to choose")
-	public void i_expect_their_to_be_options_to_choose() {
-
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+	public void verifyOptionsToChoose() throws Throwable {
+		Thread.sleep(3000);
 		//compare two options
 		homePage.compareTwoOptions(favorite.exportChartData, favorite.exportLineList);
-		
-		
-
 	}
-
-
 }

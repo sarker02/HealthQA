@@ -17,7 +17,7 @@ import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import steps.LoginSteps;
-import steps.QuickSearch;
+import steps.QuickSearchSteps;
 import utils.JsonDataReader;
 
 import java.time.Duration;

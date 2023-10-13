@@ -21,11 +21,11 @@ import pages.HomePage;
 import pages.LoginPage;
 import utils.BaseTest;
 
-public class QuickSearch extends BaseTest{
+public class QuickSearchSteps extends BaseTest{
 
 
 	public LoginPage loginPage = new LoginPage(driver);
-	public static Logger logger = Logger.getLogger(QuickSearch.class.getName());
+	public static Logger logger = Logger.getLogger(QuickSearchSteps.class.getName());
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public HomePage homePage = new HomePage(driver);
@@ -55,11 +55,10 @@ public class QuickSearch extends BaseTest{
 	public void perfomLogin() throws InterruptedException {
 		logger.info("Executing step: I am an Authenticated User");
 		loginPage.login();
-
 	}
 
 	@Given("I navigate to the Solutions Portal")
-	public void i_navigate_to_the_solutions_portal() throws InterruptedException {
+	public void navigateToSolutionsPortal() throws InterruptedException {
 		logger.info("Executing Step: I navigate to the Solutions Portal ");
 		WebElement solutionPortal = driver.findElement(homePage.solutionPortalTxt);
 		Assert.assertTrue("Solutions Portal Page Not Found", solutionPortal.isDisplayed());
@@ -70,22 +69,16 @@ public class QuickSearch extends BaseTest{
 	public void performQuickSearch() throws InterruptedException {
 		 logger.info("Executing Step: I search up results in the Quick Search Results more than int Characters ");
          homePage.performSearch("Cass");
-
-
 	}
 
 	@Then("I see list of expected records in search results")
 	public void verifyValidSearchResults() {
 		logger.info("Executing Step: I see list of Expected result queries");
-		
 		//call compare two options method
 		homePage.compareTwoOptions(homePage.patientCassinMclaughlinRecord, homePage.patientCassinSanjuanitaRecord);
-
-
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(homePage.resultsContainingText("Cass")));
 		List<WebElement> searchResults = driver.findElements(homePage.resultsContainingText("Cass"));
 		Assert.assertTrue("No matching results found", searchResults.size() > 0);
-
 	}
 
 	@Then("I click on the first user queried in the search list")
@@ -93,16 +86,13 @@ public class QuickSearch extends BaseTest{
 		logger.info("Executing Step: I click on the first user queried in the search list ");
 		driver.findElement(homePage.firstUserInSearchResults).click();
 	}
-
-
+	
 	@When("I perform search with invalid keyword")
 	public void performSearcWithInvalidKeyword() throws InterruptedException {
 		logger.info("I perform search with invalid keyword");
 		homePage.performSearch("qqww");
-
 	}
-
-
+	
 	@Then("I expect to see no results found")
 	public void verifyNoResultFoundInSearchResults() {
 		logger.info("Executing Step: I expect to see the No Result Found in search results");
