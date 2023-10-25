@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",glue="steps",
      monochrome=true,
-     tags = "@smoke",
+     tags = "@Smoke",
      plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 public class SmokeTestRunner {
 	private static ConfigPropertyReader configReader = new ConfigPropertyReader();
