@@ -19,6 +19,6 @@ public class LaunchServiceEnvironmentPage {
 	public By essenceDemoButton = By.xpath("//*[@title='https://essencedemo.inductivehealth.com/ih_essence']");
 	public By epiTraxPage = By.xpath("//*[contains(normalize-space(),'EpiTrax') and contains(@class,'flex-1 whitespace-nowrap') ]");
 	public By epiTraxDemo = By.xpath("//*[normalize-space()='EpiTrax Platform - Demo']");
-	public By epiTraxDemoButton = By.xpath("//*[@title='https://epitraxdemo.inductivehealth.com/epitrax']");
+	public By epiTraxDemoButton = By.xpath("//span[contains(text(),'Launch Demo EpiTrax')]");
 	public By respondPage = By.xpath("//*[contains(normalize-space(),'InductiveHealth Respond Point-Of-Care') and contains(@class,'inline-block font')]");
 }
