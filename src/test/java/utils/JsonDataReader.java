@@ -12,7 +12,8 @@ public class JsonDataReader {
 	 public static JSONObject readData(String FilePath) {
 	        ConfigPropertyReader configReader = new ConfigPropertyReader();
 	        String projectRootDir = configReader.getProperty("project_root_dir");
-	        String jsonFilePath = projectRootDir + File.separator + "data" + File.separator + FilePath;
+	        String project_root_dir = System.getProperty("user.dir");
+	        String jsonFilePath = project_root_dir + File.separator + "data" + File.separator + FilePath;
 	        
 	        JSONParser parser = new JSONParser();
 	        JSONObject testData = null;

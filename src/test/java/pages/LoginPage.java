@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions ;
@@ -16,14 +17,13 @@ import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import steps.LoginSteps;
-import steps.QuickSearch;
+import steps.QuickSearchSteps;
 import utils.JsonDataReader;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
-/**
- * 
- */
+
 public class LoginPage {
 
 	private WebDriver driver;
@@ -46,6 +46,10 @@ public class LoginPage {
 	public By forgotPasswordLink = By.xpath("//a[contains(text(),'Forgot your password')]");
 	
 	public By forgotPwdCnfMsg = By.xpath("//span[contains(@id,'userMessageText')]");
+	
+	public By forgotPasswordHeaderMsg = By.xpath("//div[contains(@id,'instructions')]");
+	public By submitBtn = By.xpath("//input[contains(@value,'Submit')]");
+
 
 	
 
@@ -56,8 +60,11 @@ public class LoginPage {
 		driver.findElement(usernameTxt).sendKeys((String)jsonData.get("username"));
 		driver.findElement(passwordTxt).sendKeys((String)jsonData.get("password"));
 		driver.findElement(loginBtn).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(homePage.favoritesBtn));
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+
+		WebElement Epitraxinductive= driver.findElement(By.xpath("//*[text()='Epitrax Inductive']"));
+		Assert.assertEquals(true, Epitraxinductive.isDisplayed());
+		System.out.print("Epitraxinductive text is displayed");
 	}
 	
 	

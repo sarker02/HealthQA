@@ -1,6 +1,6 @@
 Feature: Quick Search Feature Tests
 
-  @Smoke
+  @Smoke @search1
   Scenario: Search the following in search bar
     Given I am an Authenticated User
     And I navigate to the Solutions Portal
@@ -8,14 +8,14 @@ Feature: Quick Search Feature Tests
     Then I see list of expected records in search results
     And I click on the first user queried in the search list
 
-  @Smoke 
+  @Smoke @search2
   Scenario: Valid Search Query
     Given I am an Authenticated User
     When I select the quick search bar
     And I perform a search with a valid keyword
     Then I expect to see the correct results populated
 
-  @Smoke
+  @Smoke  @search3
   Scenario: Invalid Search Query
     Given I am an Authenticated User
     When I select the quick search bar
