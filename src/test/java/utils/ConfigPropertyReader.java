@@ -17,7 +17,8 @@ public class ConfigPropertyReader {
     public ConfigPropertyReader() {
         properties = new Properties();
         try {
-            FileInputStream fileInputStream = new FileInputStream("C:/Users/www.abcom.in/eclipse-workspace/HealthQA/config/global.properties");
+        	String path = System.getProperty("user.dir");
+            FileInputStream fileInputStream = new FileInputStream(path+"/config/global.properties");
             properties.load(fileInputStream);
             fileInputStream.close();
         } catch (IOException e) {
