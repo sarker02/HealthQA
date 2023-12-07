@@ -19,8 +19,8 @@
 ## Run smoke tests with IH-POWER user role.
    mvn test -Dcucumber.filter.tags="@debug" -Duser_role=IH-POWER
 
-User roles and credentails are written in file HealthQA/data/user_role_credentials.json
-QA member needs to review these credentials and make sure they are correct.
+  User roles and credentails are written in file HealthQA/data/user_role_credentials.json
+  QA member needs to review these credentials and make sure they are correct.
 
 ## Run smoke tests CLIENT_ADMIN user role
    mvn test -Dcucumber.filter.tags="@debug" -Duser_role=CLIENT-ADMIN
