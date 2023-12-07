@@ -17,6 +17,22 @@
    mvn test -Dcucumber.filter.tags="@Smoke"
 
 
+## Run smoke tests using IH-POWER user.
+   mvn test -Dcucumber.filter.tags="@debug" -Duser_role=IH-POWER
+
+### User credentails are written in file HealthQA/data/user_role_credentials.json
+### Feel free to edit it
+
+## Run smoke tests using CLIENT_ADMIN user
+   mvn test -Dcucumber.filter.tags="@debug" -Duser_role=CLIENT-ADMIN
+
+## Run tests of tag "TAG" and user role "USER_ROLE"
+Review HealthQA/data/user_role_credentials.json file, ensure your role is listed there with correct credentails.
+If not you can correct it.
+After this change, pelase run following command from project root diretcory.
+ 
+   mvn test -Dcucumber.filter.tags="@TAG" -Duser_role=USER_ROLE
+
 
 ###Technology Stack:
    Selenium Webdriver, Cucumber BDD with Java

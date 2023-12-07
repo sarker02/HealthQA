@@ -56,9 +56,11 @@ public class LoginPage {
 	public void login() throws InterruptedException {
 		logger.info("Performing login operation");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(usernameTxt));
-		jsonData = JsonDataReader.readData("valid_credentials.json");
-		driver.findElement(usernameTxt).sendKeys((String)jsonData.get("username"));
-		driver.findElement(passwordTxt).sendKeys((String)jsonData.get("password"));
+		jsonData = JsonDataReader.readData("user_role_credentials.json");
+		String user_role = System.getProperty("user_role");
+		JSONObject credentials = (JSONObject) jsonData.get(user_role);
+		driver.findElement(usernameTxt).sendKeys((String)credentials.get("username"));
+		driver.findElement(passwordTxt).sendKeys((String)credentials.get("password"));
 		driver.findElement(loginBtn).click();
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
