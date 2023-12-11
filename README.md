@@ -16,9 +16,24 @@
 ### Run cucumber tests having tag - 'Smoke' from intelij windows command line 
    mvn test -Dcucumber.filter.tags="@Smoke"
 
+## Run smoke tests with IH-POWER user role.
+   mvn test -Dcucumber.filter.tags="@Smoke" -Duser_role=IH-POWER
+
+  User roles and credentails are written in file HealthQA/data/user_role_credentials.json
+  QA member needs to review these credentials and make sure they are correct.
+
+## Run smoke tests CLIENT_ADMIN user role
+   mvn test -Dcucumber.filter.tags="@Smoke" -Duser_role=CLIENT-ADMIN
+
+## Run tests of tag "TAG" with user role "USER_ROLE"
+Review HealthQA/data/user_role_credentials.json file, ensure your role is listed there with correct credentails.
+If not you can correct it.
+After this change, pelase run following command from project root diretcory.
+ 
+   mvn test -Dcucumber.filter.tags="@TAG" -Duser_role=USER_ROLE
 
 
-###Technology Stack:
+### Technology Stack:
    Selenium Webdriver, Cucumber BDD with Java
    
 
