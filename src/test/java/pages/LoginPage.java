@@ -57,7 +57,7 @@ public class LoginPage {
 		logger.info("Performing login operation");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(usernameTxt));
 		jsonData = JsonDataReader.readData("user_role_credentials.json");
-		String user_role = System.getProperty("user_role");
+		String user_role = System.getProperty("user_role", "IH-POWER");
 		JSONObject credentials = (JSONObject) jsonData.get(user_role);
 		driver.findElement(usernameTxt).sendKeys((String)credentials.get("username"));
 		driver.findElement(passwordTxt).sendKeys((String)credentials.get("password"));
