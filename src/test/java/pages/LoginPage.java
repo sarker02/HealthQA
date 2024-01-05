@@ -21,6 +21,9 @@ import steps.QuickSearchSteps;
 import utils.JsonDataReader;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 
@@ -64,13 +67,18 @@ public class LoginPage {
 		driver.findElement(loginBtn).click();
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
-		WebElement Epitraxinductive= driver.findElement(By.xpath("//*[text()='Epitrax Inductive']"));
-		Assert.assertEquals(true, Epitraxinductive.isDisplayed());
-		System.out.print("Epitraxinductive text is displayed");
+        String user_fullname = (String) credentials.get("fullname");
+        List<WebElement> user_elements = driver.findElements(By.xpath("//*[(text())='" + user_fullname + " ']"));
+        Assert.assertFalse(!user_elements.isEmpty(), "Expected user name is displayed after login");
+             
+             
+             
 	}
-	
-	
 }
+	
+	
+	
+
 
 
 

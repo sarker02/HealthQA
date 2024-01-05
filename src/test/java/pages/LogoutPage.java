@@ -18,7 +18,7 @@ public class LogoutPage {
 		this.driver = driver;
 	}
 	public By inductiveHealthLogo = By.xpath("//*[contains(@alt,'Inductive Health Solutions') and contains(@class,'object-scale-down mt-4 mb-0.5')]");
-	public By profileIcon = By.xpath("//*[contains(text(), 'Epitrax Inductive')]");
+	public By profileIcon = By.xpath("//*[contains(text(), 'Fayeem Mooktadeer')]");
 	public By contactSupportOption = By.xpath("//*[contains(normalize-space(),'Contact Support') and contains(@type,'button')]");
 	public By giveFeedbackOption = By.xpath("//*[contains(normalize-space(),'Give Feedback') and contains(@type,'button')]");
 	public By videoTutorialOption = By.xpath("//*[contains(normalize-space(),'Video Tutorials') and contains(@class,'font-medium text-gray')]");
