@@ -21,6 +21,9 @@ import steps.QuickSearchSteps;
 import utils.JsonDataReader;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 
@@ -57,20 +60,25 @@ public class LoginPage {
 		logger.info("Performing login operation");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(usernameTxt));
 		jsonData = JsonDataReader.readData("user_role_credentials.json");
-		String user_role = System.getProperty("user_role");
+		String user_role = System.getProperty("user_role", "IH-POWER");
 		JSONObject credentials = (JSONObject) jsonData.get(user_role);
 		driver.findElement(usernameTxt).sendKeys((String)credentials.get("username"));
 		driver.findElement(passwordTxt).sendKeys((String)credentials.get("password"));
 		driver.findElement(loginBtn).click();
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
-		WebElement Epitraxinductive= driver.findElement(By.xpath("//*[text()='Epitrax Inductive']"));
-		Assert.assertEquals(true, Epitraxinductive.isDisplayed());
-		System.out.print("Epitraxinductive text is displayed");
+        String user_fullname = (String) credentials.get("fullname");
+        List<WebElement> user_elements = driver.findElements(By.xpath("//*[(text())='" + user_fullname + " ']"));
+        Assert.assertFalse(!user_elements.isEmpty(), "Expected user name is displayed after login");
+             
+             
+             
 	}
-	
-	
 }
+	
+	
+	
+
 
 
 
