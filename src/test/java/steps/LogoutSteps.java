@@ -2,8 +2,11 @@ package steps;
 
 import java.time.Duration;
 
+
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +16,7 @@ import io.cucumber.java.en.When;
 import pages.FavoriteChartPage;
 import pages.LogoutPage;
 import utils.BaseTest;
+import utils.JsonDataReader;
 
 public class LogoutSteps extends BaseTest {
 	public FavoriteChartPage favoriteChartPage = new FavoriteChartPage(driver);
@@ -20,12 +24,17 @@ public class LogoutSteps extends BaseTest {
 	public static Duration timeout = Duration.ofSeconds(20);
 	public WebDriverWait wait = new WebDriverWait(driver, timeout); 
 	public static Logger logger = Logger.getLogger(LogoutSteps.class.getName());
-
+	
 	@When("Click on the profile icon from the top right corner")
 	public void clickProfileIcon() {
 		logger.info("Executing Step: Click on the profile icon from the top right corner");
-		wait.until(ExpectedConditions.visibilityOfElementLocated( logoutPage.profileIcon));
-		driver.findElement( logoutPage.profileIcon).click();
+		JSONObject jsonData = JsonDataReader.readData("user_role_credentials.json");
+		String user_role = System.getProperty("user_role", "IH-POWER");
+		JSONObject credentials = (JSONObject) jsonData.get(user_role);
+		String user_fullname = (String) credentials.get("fullname");
+		WebElement profileIcon1 =(WebElement) driver.findElement(By.xpath("//*[(text())='" + user_fullname + "']"));
+        wait.until(ExpectedConditions.visibilityOf(profileIcon1));
+		profileIcon1.click();
 	}
 
 	@Then("Check All menu option is visible")
